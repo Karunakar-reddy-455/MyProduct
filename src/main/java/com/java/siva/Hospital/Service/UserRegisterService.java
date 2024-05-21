@@ -17,5 +17,7 @@ public interface UserRegisterService {
 	public HospitalRegister updateUser(HospitalRegister userRegister, Long id);
 
 	public HospitalRegisterDto findById(Long id);
+	
+	public String findByEmailAndPassword(HospitalRegister hospitalRegister);
 
 }

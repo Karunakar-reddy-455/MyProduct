@@ -23,7 +23,12 @@ public class HospitalRegisterDto {
 	private long mobile;
 	private String address;
 	private String email;
+	private String password;
 	private int countryId;
+	private int stateId;
+	private int cityId;
+	private String area;
+	private Status status;
 
 	/**
 	 * 
@@ -32,26 +37,29 @@ public class HospitalRegisterDto {
 		super();
 	}
 
+	
 	/**
 	 * @param id
 	 * @param userName
 	 * @param mobile
 	 * @param address
 	 * @param email
+	 * @param password
 	 * @param countryId
 	 * @param stateId
 	 * @param cityId
 	 * @param area
 	 * @param status
 	 */
-	public HospitalRegisterDto(long id, String userName, long mobile, String address, String email, int countryId,
-			int stateId, int cityId, String area, Status status) {
+	public HospitalRegisterDto(long id, String userName, long mobile, String address, String email, String password,
+			int countryId, int stateId, int cityId, String area, Status status) {
 		super();
 		this.id = id;
 		this.userName = userName;
 		this.mobile = mobile;
 		this.address = address;
 		this.email = email;
+		this.password = password;
 		this.countryId = countryId;
 		this.stateId = stateId;
 		this.cityId = cityId;
@@ -59,10 +67,6 @@ public class HospitalRegisterDto {
 		this.status = status;
 	}
 
-	private int stateId;
-	private int cityId;
-	private String area;
-	private Status status;
 
 	public long getId() {
 		return id;
@@ -142,6 +146,14 @@ public class HospitalRegisterDto {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

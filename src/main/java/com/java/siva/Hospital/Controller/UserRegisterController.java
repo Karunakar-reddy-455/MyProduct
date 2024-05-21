@@ -59,4 +59,9 @@ public class UserRegisterController {
 		logger.info("User id identify Successfully");
 		return userRegisterService.findById(id);
 	}
+	
+	@GetMapping("/login")
+	public String loginHospital(@RequestBody HospitalRegister hospitalRegister){
+		return userRegisterService.findByEmailAndPassword(hospitalRegister);
+	}
 }

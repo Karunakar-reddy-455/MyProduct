@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import com.java.siva.Hospital.Dto.HospitalRegisterDto;
 import com.java.siva.Hospital.Entity.HospitalRegister;
 import com.java.siva.Hospital.Enum.Status;
-import com.java.siva.Hospital.Repository.UserRegisterRepository;
+import com.java.siva.Hospital.Repository.HospitalRegisterRepository;
 
 @Service
 public class UserRegisterServiceImpl implements UserRegisterService {
 
 	@Autowired
-	private UserRegisterRepository userRegisterRepository;
+	private HospitalRegisterRepository userRegisterRepository;
 
 	@Bean
 	public ModelMapper getModelMapper() {
@@ -58,6 +58,18 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 		HospitalRegister h = userRegisterRepository.findById(id).get();
 		ModelMapper modelMapper = new ModelMapper();
 		return modelMapper.map(h, HospitalRegisterDto.class);
+	}
+
+	@Override
+	public String findByEmailAndPassword(HospitalRegister hospitalRegister) {
+		HospitalRegister dto = userRegisterRepository.findByEmailAndPassword(hospitalRegister.getEmail(),
+				hospitalRegister.getPassword());
+
+		if (dto != null && dto.getPassword().equals(hospitalRegister.getPassword())) {
+			return "hospitalLoginDto details successufully";
+		} else {
+			return "Incorrect email and password";
+		}
 	}
 
 }
