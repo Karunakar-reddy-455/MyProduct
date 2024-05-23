@@ -23,7 +23,7 @@ public class PatientServiceImpl implements PatientService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public PatientDto addPatient(PatientDto patientDto, Status status, Gender gender) {
+	public PatientRegistation addPatient(PatientRegistation patientDto, Status status, Gender gender) {
 		PatientRegistation savedPatient = patientRepository.save(modelMapper.map(patientDto, PatientRegistation.class));
 		if (status != null) {
 			switch (status) {
@@ -44,7 +44,7 @@ public class PatientServiceImpl implements PatientService {
 				break;
 			}
 		}
-		return modelMapper.map(savedPatient, PatientDto.class);
+		return modelMapper.map(savedPatient, PatientRegistation.class);
 
 	}
 
@@ -59,9 +59,9 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public PatientDto updatePatient(PatientDto patientDto, Long id) {
+	public PatientRegistation updatePatient(PatientRegistation patientDto, Long id) {
 		PatientRegistation patient = patientRepository.save(modelMapper.map(patientDto, PatientRegistation.class));
-		return modelMapper.map(patient, PatientDto.class);
+		return modelMapper.map(patient, PatientRegistation.class);
 	}
 
 	@Override

@@ -15,7 +15,7 @@ public class PatientRegistation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long patientId;
 	private String firstName;
 	private String lastName;
 	private String middleName;
@@ -51,10 +51,10 @@ public class PatientRegistation {
 	 * @param countryId
 	 * @param status
 	 */
-	public PatientRegistation(long id, String firstName, String lastName, String middleName, Gender gender,
+	public PatientRegistation(long patientId, String firstName, String lastName, String middleName, Gender gender,
 			String email, long phone, long adhar, String place, int stateId, int countryId, Status status) {
 		super();
-		this.id = id;
+		this.patientId = patientId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;
@@ -66,14 +66,6 @@ public class PatientRegistation {
 		this.stateId = stateId;
 		this.countryId = countryId;
 		this.status = status;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -166,9 +158,17 @@ public class PatientRegistation {
 
 	@Override
 	public String toString() {
-		return "PatientRegistation [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName="
-				+ middleName + ", email=" + email + ", phone=" + phone + ", adhar=" + adhar + ", place=" + place
-				+ ", stateId=" + stateId + ", countryId=" + countryId + ", status=" + status + "]";
+		return "PatientRegistation [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", middleName=" + middleName + ", email=" + email + ", phone=" + phone + ", adhar=" + adhar
+				+ ", place=" + place + ", stateId=" + stateId + ", countryId=" + countryId + ", status=" + status + "]";
+	}
+
+	public long getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(long patientId) {
+		this.patientId = patientId;
 	}
 
 }

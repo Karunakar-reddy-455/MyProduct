@@ -24,8 +24,8 @@ public class PatientController {
 	private PatientService patientService;
 
 	@PostMapping("/addpatient")
-	public ResponseEntity<PatientDto> createPatient(@RequestBody PatientDto patientDto, Status status, Gender gender) {
-		return new ResponseEntity<PatientDto>(patientService.addPatient(patientDto, status, gender),
+	public ResponseEntity<PatientRegistation> createPatient(@RequestBody PatientRegistation patient, Status status, Gender gender) {
+		return new ResponseEntity<PatientRegistation>(patientService.addPatient(patient, status, gender),
 				HttpStatus.ACCEPTED);
 	}
 

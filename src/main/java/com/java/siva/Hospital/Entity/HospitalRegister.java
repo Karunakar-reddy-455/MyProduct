@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 public class HospitalRegister {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long HospitalId;
 	private String userName;
 	private long mobile;
 	private String address;
@@ -27,12 +27,7 @@ public class HospitalRegister {
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private Status status;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -106,10 +101,10 @@ public class HospitalRegister {
 	 * @param password
 	 * @param status
 	 */
-	public HospitalRegister(long id, String userName, long mobile, String address, String email, int countryId,
+	public HospitalRegister(long HospitalId, String userName, long mobile, String address, String email, int countryId,
 			int stateId, int cityId, String area, String password, Status status) {
 		super();
-		this.id = id;
+		this.HospitalId = HospitalId;
 		this.userName = userName;
 		this.mobile = mobile;
 		this.address = address;
@@ -126,6 +121,12 @@ public class HospitalRegister {
 	 */
 	public HospitalRegister() {
 		super();
+	}
+	public long getHospitalId() {
+		return HospitalId;
+	}
+	public void setHospitalId(long hospitalId) {
+		HospitalId = hospitalId;
 	}
 	
 

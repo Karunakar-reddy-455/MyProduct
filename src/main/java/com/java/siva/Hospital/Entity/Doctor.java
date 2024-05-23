@@ -16,7 +16,7 @@ import jakarta.persistence.Id;
 public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long doctorId;
 	private String doctorName;
 	private Date dateOfBirth;
 	@Enumerated(EnumType.STRING)
@@ -29,14 +29,6 @@ public class Doctor {
 	private String languageSpoke;
 	@Enumerated(EnumType.STRING)
 	private Status status;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getDoctorName() {
 		return doctorName;
@@ -131,10 +123,10 @@ public class Doctor {
 	 * @param languageSpoke
 	 * @param status
 	 */
-	public Doctor(long id, String doctorName, Date dateOfBirth, Gender gender, long phoneNumber, String email,
+	public Doctor(long doctorId, String doctorName, Date dateOfBirth, Gender gender, long phoneNumber, String email,
 			String address, int medicalLicenseNumber, String specialization, String languageSpoke, Status status) {
 		super();
-		this.id = id;
+		this.doctorId = doctorId;
 		this.doctorName = doctorName;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
@@ -156,10 +148,18 @@ public class Doctor {
 
 	@Override
 	public String toString() {
-		return "Doctor [id=" + id + ", doctorName=" + doctorName + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender
-				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address
+		return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName + ", dateOfBirth=" + dateOfBirth
+				+ ", gender=" + gender + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address
 				+ ", medicalLicenseNumber=" + medicalLicenseNumber + ", specialization=" + specialization
 				+ ", languageSpoke=" + languageSpoke + ", status=" + status + "]";
+	}
+
+	public long getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(long doctorId) {
+		this.doctorId = doctorId;
 	}
 
 }
