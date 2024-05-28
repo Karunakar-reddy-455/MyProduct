@@ -38,4 +38,13 @@ public class UserRegisterExceptionHandler extends ResponseEntityExceptionHandler
 		return new ResponseEntity<>(registerResponse, HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(EmailAndPasswordException.class)
+	public final ResponseEntity<UserRegisterResponse> EmailAndPasswordExpetion(Exception ex, WebRequest request)
+			throws Exception {
+		UserRegisterResponse registerResponse = new UserRegisterResponse(LocalDateTime.now(), ex.getMessage(),
+				request.getDescription(false));
+		return new ResponseEntity<UserRegisterResponse>(registerResponse, HttpStatus.NOT_FOUND);
+
+	}
+
 }

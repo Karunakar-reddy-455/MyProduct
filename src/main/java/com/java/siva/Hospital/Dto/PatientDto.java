@@ -1,14 +1,21 @@
 package com.java.siva.Hospital.Dto;
 
+
 import com.java.siva.Hospital.Enum.Gender;
 import com.java.siva.Hospital.Enum.Status;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
+
 public class PatientDto {
 
-	private long id;
+	
+	private long patientId;
 	private String firstName;
 	private String lastName;
 	private String middleName;
+	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	private String email;
 	private long phone;
@@ -16,7 +23,9 @@ public class PatientDto {
 	private String place;
 	private int stateId;
 	private int countryId;
+	@Enumerated(EnumType.STRING)
 	private Status status;
+	private long hospitalId;
 
 	/**
 	 * 
@@ -39,10 +48,10 @@ public class PatientDto {
 	 * @param countryId
 	 * @param status
 	 */
-	public PatientDto(long id, String firstName, String lastName, String middleName, Gender gender, String email,
-			long phone, long adhar, String place, int stateId, int countryId, Status status) {
+	public PatientDto(long patientId, String firstName, String lastName, String middleName, Gender gender, String email,
+			long phone, long adhar, String place, int stateId, int countryId, Status status, long hospitalId) {
 		super();
-		this.id = id;
+		this.patientId = patientId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;
@@ -54,14 +63,7 @@ public class PatientDto {
 		this.stateId = stateId;
 		this.countryId = countryId;
 		this.status = status;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
+		this.hospitalId = hospitalId;
 	}
 
 	public String getFirstName() {
@@ -150,6 +152,30 @@ public class PatientDto {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public long getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(long patientId) {
+		this.patientId = patientId;
+	}
+
+	@Override
+	public String toString() {
+		return "PatientRegistation [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", middleName=" + middleName + ", gender=" + gender + ", email=" + email + ", phone=" + phone
+				+ ", adhar=" + adhar + ", place=" + place + ", stateId=" + stateId + ", countryId=" + countryId
+				+ ", status=" + status + ", hospitalId=" + hospitalId + "]";
+	}
+
+	public long getHospitalId() {
+		return hospitalId;
+	}
+
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
 	}
 
 }

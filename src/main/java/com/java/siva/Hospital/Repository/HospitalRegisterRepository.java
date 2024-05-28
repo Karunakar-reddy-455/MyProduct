@@ -3,10 +3,10 @@ package com.java.siva.Hospital.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.java.siva.Hospital.Entity.HospitalRegister;
+import com.java.siva.Hospital.Entity.Hospital;
 
 @Repository
-public interface HospitalRegisterRepository extends JpaRepository<HospitalRegister, Long> {
+public interface HospitalRegisterRepository extends JpaRepository<Hospital, Long> {
 
-	public HospitalRegister findByEmailAndPassword(String email,String password);
+	public Hospital findByEmailAndPassword(String email, String password);
 }

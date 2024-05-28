@@ -42,7 +42,11 @@ public class MedicineServiceImpl implements MedicineService {
 
 	@Override
 	public void deleteMedicine(Long id) {
-		medicineRepository.deleteById(id);
+		if (medicineRepository.findById(id).isPresent()) {
+			medicineRepository.deleteById(id);
+		} else {
+			throw new IdNotFoundException("Medicine Id is Not present in tabel" + " " + id);
+		}
 	}
 
 	@Override
@@ -53,12 +57,17 @@ public class MedicineServiceImpl implements MedicineService {
 			return modelMapper.map(medicine, MedicineDto.class);
 
 		} else {
-			throw new IdNotFoundException("Supplier not found with id: " + id);
+			throw new IdNotFoundException("medicine not found with id: " + id);
 		}
 	}
 
 	@Override
 	public Medicine updateMedicine(Medicine medicine, Long id) {
-		return medicineRepository.save(medicine);
+		Optional<Medicine> m = medicineRepository.findById(id);
+		if (m.isPresent()) {
+			return medicineRepository.save(medicine);
+		} else {
+			throw new IdNotFoundException("Medicine id not present" + " " + id);
+		}
 	}
 }

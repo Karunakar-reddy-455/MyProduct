@@ -1,5 +1,7 @@
 package com.java.siva.Hospital.Entity;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.java.siva.Hospital.Enum.Status;
 
 import jakarta.persistence.Entity;
@@ -11,11 +13,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "hospital_registration")
-public class HospitalRegister {
+@CrossOrigin
+public class Hospital {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long HospitalId;
+	private long hospitalId;
 	private String userName;
 	private long mobile;
 	private String address;
@@ -27,84 +29,91 @@ public class HospitalRegister {
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private Status status;
-	
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public long getMobile() {
 		return mobile;
 	}
+
 	public void setMobile(long mobile) {
 		this.mobile = mobile;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public int getCountryId() {
 		return countryId;
 	}
+
 	public void setCountryId(int countryId) {
 		this.countryId = countryId;
 	}
+
 	public int getStateId() {
 		return stateId;
 	}
+
 	public void setStateId(int stateId) {
 		this.stateId = stateId;
 	}
+
 	public int getCityId() {
 		return cityId;
 	}
+
 	public void setCityId(int cityId) {
 		this.cityId = cityId;
 	}
+
 	public String getArea() {
 		return area;
 	}
+
 	public void setArea(String area) {
 		this.area = area;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public Status getStatus() {
 		return status;
 	}
+
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	/**
-	 * @param id
-	 * @param userName
-	 * @param mobile
-	 * @param address
-	 * @param email
-	 * @param countryId
-	 * @param stateId
-	 * @param cityId
-	 * @param area
-	 * @param password
-	 * @param status
-	 */
-	public HospitalRegister(long HospitalId, String userName, long mobile, String address, String email, int countryId,
+
+	public Hospital(long hospitalId, String userName, long mobile, String address, String email, int countryId,
 			int stateId, int cityId, String area, String password, Status status) {
 		super();
-		this.HospitalId = HospitalId;
+		this.hospitalId = hospitalId;
 		this.userName = userName;
 		this.mobile = mobile;
 		this.address = address;
@@ -116,18 +125,20 @@ public class HospitalRegister {
 		this.password = password;
 		this.status = status;
 	}
+
 	/**
 	 * 
 	 */
-	public HospitalRegister() {
+	public Hospital() {
 		super();
 	}
+
 	public long getHospitalId() {
-		return HospitalId;
+		return hospitalId;
 	}
+
 	public void setHospitalId(long hospitalId) {
-		HospitalId = hospitalId;
+		this.hospitalId = hospitalId;
 	}
-	
 
 }

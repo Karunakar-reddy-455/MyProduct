@@ -6,7 +6,7 @@ import com.java.siva.Hospital.Enum.Type;
 public class SupplierDto {
 
 	private long id;
-	private int hospitalId;
+	private long hospitalId;
 	private Type type;
 	private String userName;
 	private String password;
@@ -20,11 +20,11 @@ public class SupplierDto {
 		this.id = id;
 	}
 
-	public int getHospitalId() {
+	public long getHospitalId() {
 		return hospitalId;
 	}
 
-	public void setHospitalId(int hospitalId) {
+	public void setHospitalId(long hospitalId) {
 		this.hospitalId = hospitalId;
 	}
 
@@ -68,7 +68,7 @@ public class SupplierDto {
 	 * @param password
 	 * @param status
 	 */
-	public SupplierDto(long id, int hospitalId, Type type, String userName, String password, Status status) {
+	public SupplierDto(long id, long hospitalId, Type type, String userName, String password, Status status) {
 		super();
 		this.id = id;
 		this.hospitalId = hospitalId;
@@ -83,5 +83,11 @@ public class SupplierDto {
 	 */
 	public SupplierDto() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+		return "SupplierDto [id=" + id + ", hospitalId=" + hospitalId + ", type=" + type + ", userName=" + userName
+				+ ", password=" + password + ", status=" + status + "]";
 	}
 }

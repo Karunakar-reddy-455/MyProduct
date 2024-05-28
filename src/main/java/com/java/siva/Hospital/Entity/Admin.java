@@ -1,5 +1,7 @@
 package com.java.siva.Hospital.Entity;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.java.siva.Hospital.Enum.Status;
 
 import jakarta.persistence.Entity;
@@ -11,8 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "admin")
-public class User {
+@CrossOrigin
+public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -53,7 +55,7 @@ public class User {
 		this.status = status;
 	}
 
-	public User(Long id, String username, String password, Status status) {
+	public Admin(Long id, String username, String password, Status status) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -61,7 +63,7 @@ public class User {
 		this.status = status;
 	}
 
-	public User() {
+	public Admin() {
 		super();
 	}
 

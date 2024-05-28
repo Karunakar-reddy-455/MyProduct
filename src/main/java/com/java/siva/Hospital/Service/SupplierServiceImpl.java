@@ -51,13 +51,24 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	public Supplier updateSupplier(Supplier supplier, Long id) {
-		return supplierRepository.save(supplier);
+		Optional<Supplier> supp = supplierRepository.findById(id);
+		if (supp.isPresent()) {
+			return supplierRepository.save(supplier);
+		} else {
+			throw new IdNotFoundException("Supplier Id is not present" + " " + id);
+		}
 	}
 
 	@Override
 	public String deleteSupplier(Long id) {
+		if(supplierRepository.findById(id).isPresent()) {
 		supplierRepository.deleteById(id);
 		return "Deleted Successfully";
+		}
+		else {
+			throw new IdNotFoundException("SupplierId" +" " + id + " " + "is not present");
+		}
+		
 	}
 
 	@Override

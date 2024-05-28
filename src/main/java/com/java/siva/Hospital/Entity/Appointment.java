@@ -2,6 +2,8 @@ package com.java.siva.Hospital.Entity;
 
 import java.sql.Date;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
+@CrossOrigin
 public class Appointment {
 
 	@Id
@@ -21,11 +24,11 @@ public class Appointment {
 
 	@ManyToOne
 	@JoinColumn(name = "patient_id")
-	private PatientRegistation patient;
+	private Patient patient;
 
 	@ManyToOne
 	@JoinColumn(name = "hospital_id")
-	private HospitalRegister hospital;
+	private Hospital hospital;
 
 	private Date onDate;
 	private String reason;
@@ -47,19 +50,19 @@ public class Appointment {
 		this.doctor = doctor;
 	}
 
-	public PatientRegistation getPatient() {
+	public Patient getPatient() {
 		return patient;
 	}
 
-	public void setPatient(PatientRegistation patient) {
+	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
 
-	public HospitalRegister getHospital() {
+	public Hospital getHospital() {
 		return hospital;
 	}
 
-	public void setHospital(HospitalRegister hospital) {
+	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
 	}
 
@@ -96,7 +99,7 @@ public class Appointment {
 	 * @param reason
 	 * @param description
 	 */
-	public Appointment(long appointmentId, Doctor doctor, PatientRegistation patient, HospitalRegister hospital,
+	public Appointment(long appointmentId, Doctor doctor, Patient patient, Hospital hospital,
 			Date onDate, String reason, String description) {
 		super();
 		this.appointmentId = appointmentId;

@@ -2,8 +2,8 @@ package com.java.siva.Hospital.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.java.siva.Hospital.Entity.User;
+import com.java.siva.Hospital.Entity.Admin;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-	User findByUsernameAndPassword(String username, String password);
+public interface UserRepository extends JpaRepository<Admin, Long> {
+	Admin findByUsernameAndPassword(String username, String password);
 }

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,4 +46,11 @@ public class AppointmentController {
 		LOGGER.info("Retrieved all appointments: {}", appointments);
 		return new ResponseEntity<>(appointments, HttpStatus.OK);
 	}
+	
+	@DeleteMapping("/appointment/{id}")
+	public ResponseEntity<String> deleteAppointment(@RequestBody Long id){
+		LOGGER.info("Appointment Deleted }");
+		return new ResponseEntity<>(appointmentService.deleteAppointment(id),HttpStatus.OK);
+	}
+
 }

@@ -2,6 +2,8 @@ package com.java.siva.Hospital.Entity;
 
 import java.sql.Date;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.java.siva.Hospital.Enum.Gender;
 import com.java.siva.Hospital.Enum.Status;
 
@@ -13,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+@CrossOrigin
 public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +32,7 @@ public class Doctor {
 	private String languageSpoke;
 	@Enumerated(EnumType.STRING)
 	private Status status;
+	private long hospitalId;
 
 	public String getDoctorName() {
 		return doctorName;
@@ -124,7 +128,8 @@ public class Doctor {
 	 * @param status
 	 */
 	public Doctor(long doctorId, String doctorName, Date dateOfBirth, Gender gender, long phoneNumber, String email,
-			String address, int medicalLicenseNumber, String specialization, String languageSpoke, Status status) {
+			String address, int medicalLicenseNumber, String specialization, String languageSpoke, Status status,
+			long doctor_id, long hospitalId) {
 		super();
 		this.doctorId = doctorId;
 		this.doctorName = doctorName;
@@ -137,6 +142,7 @@ public class Doctor {
 		this.specialization = specialization;
 		this.languageSpoke = languageSpoke;
 		this.status = status;
+		this.hospitalId = hospitalId;
 	}
 
 	/**
@@ -146,20 +152,30 @@ public class Doctor {
 		super();
 	}
 
-	@Override
-	public String toString() {
-		return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName + ", dateOfBirth=" + dateOfBirth
-				+ ", gender=" + gender + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address
-				+ ", medicalLicenseNumber=" + medicalLicenseNumber + ", specialization=" + specialization
-				+ ", languageSpoke=" + languageSpoke + ", status=" + status + "]";
-	}
-
 	public long getDoctorId() {
 		return doctorId;
 	}
 
 	public void setDoctorId(long doctorId) {
 		this.doctorId = doctorId;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName + ", dateOfBirth=" + dateOfBirth
+				+ ", gender=" + gender + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address
+				+ ", medicalLicenseNumber=" + medicalLicenseNumber + ", specialization=" + specialization
+				+ ", languageSpoke=" + languageSpoke + ", status=" + status + ", hospitalId=" + hospitalId + "]";
+	}
+
+	public long getHospitalId() {
+		return hospitalId;
+	}
+
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
 	}
 
 }

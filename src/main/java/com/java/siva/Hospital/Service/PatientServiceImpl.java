@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.siva.Hospital.Dto.PatientDto;
-import com.java.siva.Hospital.Entity.PatientRegistation;
+import com.java.siva.Hospital.Entity.Patient;
 import com.java.siva.Hospital.Enum.Gender;
 import com.java.siva.Hospital.Enum.Status;
 import com.java.siva.Hospital.Repository.PatientRepository;
@@ -23,8 +23,8 @@ public class PatientServiceImpl implements PatientService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public PatientRegistation addPatient(PatientRegistation patientDto, Status status, Gender gender) {
-		PatientRegistation savedPatient = patientRepository.save(modelMapper.map(patientDto, PatientRegistation.class));
+	public Patient addPatient(Patient patientDto, Status status, Gender gender) {
+		Patient savedPatient = patientRepository.save(modelMapper.map(patientDto, Patient.class));
 		if (status != null) {
 			switch (status) {
 			case ACTIVE:
@@ -44,35 +44,43 @@ public class PatientServiceImpl implements PatientService {
 				break;
 			}
 		}
-		return modelMapper.map(savedPatient, PatientRegistation.class);
+		return modelMapper.map(savedPatient, Patient.class);
 
 	}
 
 	@Override
-	public List<PatientRegistation> fetchAllPatient() {
+	public List<Patient> fetchAllPatient() {
 		return patientRepository.findAll();
 	}
 
 	@Override
 	public void deletePatient(Long id) {
-		patientRepository.deleteById(id);
+		if (patientRepository.findById(id).isPresent()) {
+
+			patientRepository.deleteById(id);
+		} else {
+			throw new IdNotFoundException("PatientId " + " " + id + " " + "is not present");
+		}
 	}
 
 	@Override
-	public PatientRegistation updatePatient(PatientRegistation patientDto, Long id) {
-		PatientRegistation patient = patientRepository.save(modelMapper.map(patientDto, PatientRegistation.class));
-		return modelMapper.map(patient, PatientRegistation.class);
+	public Patient updatePatient(Patient patient, Long id) {
+		if (patientRepository.findById(id).isPresent()) {
+			return patientRepository.save(patient);
+		} else {
+			throw new IdNotFoundException("Patient Id is not present " + " " + id);
+		}
+
 	}
 
 	@Override
 	public PatientDto findByPatient(Long id) {
-		Optional<PatientRegistation> patient = patientRepository.findById(id);
+		Optional<Patient> patient = patientRepository.findById(id);
 		if (patient.isPresent()) {
-			// ModelMapper modelMapper = new ModelMapper();
 			return modelMapper.map(patient, PatientDto.class);
 
 		} else {
-			throw new IdNotFoundException("Supplier not found with id: " + id);
+			throw new IdNotFoundException("Patient Id not found with id: " + id);
 		}
 	}
 }

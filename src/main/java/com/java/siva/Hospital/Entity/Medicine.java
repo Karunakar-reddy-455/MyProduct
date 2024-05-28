@@ -1,5 +1,7 @@
 package com.java.siva.Hospital.Entity;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.java.siva.Hospital.Enum.Status;
 
 import jakarta.persistence.Entity;
@@ -10,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+@CrossOrigin
 public class Medicine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -53,12 +53,20 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public void deleteDoctor(Long id) {
-		doctorRepository.deleteById(id);
+		if (doctorRepository.findById(id).isPresent()) {
+			doctorRepository.deleteById(id);
+		} else {
+			throw new IdNotFoundException("Doctor Id is not present in Tabel" + " " + id);
+		}
 	}
 
 	@Override
 	public Doctor updateDoctor(Doctor doctor, Long id) {
-		return doctorRepository.save(doctor);
+		if (doctorRepository.findById(id).isPresent()) {
+			return doctorRepository.save(doctor);
+		} else {
+			throw new IdNotFoundException("Doctor Id is not present in Tabel" + " " + id);
+		}
 	}
 
 	@Override

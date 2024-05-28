@@ -1,5 +1,7 @@
 package com.java.siva.Hospital.Entity;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.java.siva.Hospital.Enum.Gender;
 import com.java.siva.Hospital.Enum.Status;
 
@@ -9,9 +11,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-public class PatientRegistation {
+@CrossOrigin
+public class Patient {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +33,12 @@ public class PatientRegistation {
 	private int countryId;
 	@Enumerated(EnumType.STRING)
 	private Status status;
+	private long hospitalId;
 
 	/**
 	 * 
 	 */
-	public PatientRegistation() {
+	public Patient() {
 		super();
 	}
 
@@ -51,8 +56,9 @@ public class PatientRegistation {
 	 * @param countryId
 	 * @param status
 	 */
-	public PatientRegistation(long patientId, String firstName, String lastName, String middleName, Gender gender,
-			String email, long phone, long adhar, String place, int stateId, int countryId, Status status) {
+	public Patient(long patientId, String firstName, String lastName, String middleName, Gender gender,
+			String email, long phone, long adhar, String place, int stateId, int countryId, Status status,
+			long hospitalId) {
 		super();
 		this.patientId = patientId;
 		this.firstName = firstName;
@@ -66,6 +72,7 @@ public class PatientRegistation {
 		this.stateId = stateId;
 		this.countryId = countryId;
 		this.status = status;
+		this.hospitalId = hospitalId;
 	}
 
 	public String getFirstName() {
@@ -156,13 +163,6 @@ public class PatientRegistation {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "PatientRegistation [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", middleName=" + middleName + ", email=" + email + ", phone=" + phone + ", adhar=" + adhar
-				+ ", place=" + place + ", stateId=" + stateId + ", countryId=" + countryId + ", status=" + status + "]";
-	}
-
 	public long getPatientId() {
 		return patientId;
 	}
@@ -170,5 +170,22 @@ public class PatientRegistation {
 	public void setPatientId(long patientId) {
 		this.patientId = patientId;
 	}
+
+	@Override
+	public String toString() {
+		return "PatientRegistation [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", middleName=" + middleName + ", gender=" + gender + ", email=" + email + ", phone=" + phone
+				+ ", adhar=" + adhar + ", place=" + place + ", stateId=" + stateId + ", countryId=" + countryId
+				+ ", status=" + status + ", hospitalId=" + hospitalId + "]";
+	}
+
+	public long getHospitalId() {
+		return hospitalId;
+	}
+
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
+	}
+	
 
 }

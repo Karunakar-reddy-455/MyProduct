@@ -1,79 +1,24 @@
 package com.java.siva.Hospital.Dto;
 
-import com.java.siva.Hospital.Enum.Status;
-
 public class HospitalRegisterDto {
 
-	/*
-	 * private HospitalRegister hospitalRegister;
-	 * 
-	 * public HospitalRegisterDto() { super(); }
-	 * 
-	 * public HospitalRegisterDto(HospitalRegister hospitalRegister) { super();
-	 * this.hospitalRegister = hospitalRegister; }
-	 * 
-	 * public HospitalRegister getHospitalRegister() { return hospitalRegister; }
-	 * 
-	 * public void setHospitalRegister(HospitalRegister hospitalRegister) {
-	 * this.hospitalRegister = hospitalRegister; }
-	 */
-
-	private long id;
+	private long hospitalId;
 	private String userName;
 	private long mobile;
 	private String address;
 	private String email;
-	private String password;
 	private int countryId;
 	private int stateId;
 	private int cityId;
 	private String area;
-	private Status status;
+	private String password;
 
-	/**
-	 * 
-	 */
-	public HospitalRegisterDto() {
-		super();
+	public long getHospitalId() {
+		return hospitalId;
 	}
 
-	
-	/**
-	 * @param id
-	 * @param userName
-	 * @param mobile
-	 * @param address
-	 * @param email
-	 * @param password
-	 * @param countryId
-	 * @param stateId
-	 * @param cityId
-	 * @param area
-	 * @param status
-	 */
-	public HospitalRegisterDto(long id, String userName, long mobile, String address, String email, String password,
-			int countryId, int stateId, int cityId, String area, Status status) {
-		super();
-		this.id = id;
-		this.userName = userName;
-		this.mobile = mobile;
-		this.address = address;
-		this.email = email;
-		this.password = password;
-		this.countryId = countryId;
-		this.stateId = stateId;
-		this.cityId = cityId;
-		this.area = area;
-		this.status = status;
-	}
-
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
 	}
 
 	public String getUserName() {
@@ -140,20 +85,53 @@ public class HospitalRegisterDto {
 		this.area = area;
 	}
 
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @param hospitalId
+	 * @param userName
+	 * @param mobile
+	 * @param address
+	 * @param email
+	 * @param countryId
+	 * @param stateId
+	 * @param cityId
+	 * @param area
+	 * @param password
+	 */
+	public HospitalRegisterDto(long hospitalId, String userName, long mobile, String address, String email,
+			int countryId, int stateId, int cityId, String area, String password) {
+		super();
+		this.hospitalId = hospitalId;
+		this.userName = userName;
+		this.mobile = mobile;
+		this.address = address;
+		this.email = email;
+		this.countryId = countryId;
+		this.stateId = stateId;
+		this.cityId = cityId;
+		this.area = area;
+		this.password = password;
+	}
+
+	/**
+	 * 
+	 */
+	public HospitalRegisterDto() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "HospitalRegisterDto [hospitalId=" + hospitalId + ", userName=" + userName + ", mobile=" + mobile
+				+ ", address=" + address + ", email=" + email + ", countryId=" + countryId + ", stateId=" + stateId
+				+ ", cityId=" + cityId + ", area=" + area + ", password=" + password + "]";
 	}
 
 }
