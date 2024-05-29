@@ -2,8 +2,6 @@ package com.java.siva.Hospital.Entity;
 
 import java.sql.Date;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import com.java.siva.Hospital.Enum.Gender;
 import com.java.siva.Hospital.Enum.Status;
 
@@ -15,7 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-@CrossOrigin
 public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

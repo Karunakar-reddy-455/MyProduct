@@ -1,7 +1,5 @@
 package com.java.siva.Hospital.Entity;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import com.java.siva.Hospital.Enum.Status;
 
 import jakarta.persistence.Entity;
@@ -10,10 +8,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@CrossOrigin
+
 public class Hospital {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +26,14 @@ public class Hospital {
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private Status status;
+
+	public long getHospitalId() {
+		return hospitalId;
+	}
+
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -110,6 +115,19 @@ public class Hospital {
 		this.status = status;
 	}
 
+	/**
+	 * @param hospitalId
+	 * @param userName
+	 * @param mobile
+	 * @param address
+	 * @param email
+	 * @param countryId
+	 * @param stateId
+	 * @param cityId
+	 * @param area
+	 * @param password
+	 * @param status
+	 */
 	public Hospital(long hospitalId, String userName, long mobile, String address, String email, int countryId,
 			int stateId, int cityId, String area, String password, Status status) {
 		super();
@@ -133,12 +151,11 @@ public class Hospital {
 		super();
 	}
 
-	public long getHospitalId() {
-		return hospitalId;
-	}
-
-	public void setHospitalId(long hospitalId) {
-		this.hospitalId = hospitalId;
+	@Override
+	public String toString() {
+		return "Hospital [hospitalId=" + hospitalId + ", userName=" + userName + ", mobile=" + mobile + ", address="
+				+ address + ", email=" + email + ", countryId=" + countryId + ", stateId=" + stateId + ", cityId="
+				+ cityId + ", area=" + area + ", password=" + password + ", status=" + status + "]";
 	}
 
 }

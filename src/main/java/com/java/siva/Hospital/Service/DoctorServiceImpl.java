@@ -80,4 +80,9 @@ public class DoctorServiceImpl implements DoctorService {
 		}
 	}
 
+	@Override
+	public List<Doctor> findDoctorsByHospitalId(Long hospitalId) {
+		return doctorRepository.findByHospitalId(hospitalId);
+	}
+
 }

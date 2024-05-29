@@ -2,8 +2,6 @@ package com.java.siva.Hospital.Entity;
 
 import java.sql.Date;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +10,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-@CrossOrigin
 public class Appointment {
 
 	@Id

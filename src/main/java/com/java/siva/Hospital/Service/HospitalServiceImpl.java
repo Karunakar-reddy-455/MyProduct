@@ -7,18 +7,17 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.java.siva.Hospital.Dto.HospitalRegisterDto;
+import com.java.siva.Hospital.Dto.HospitalDto;
 import com.java.siva.Hospital.Entity.Hospital;
 import com.java.siva.Hospital.Enum.Status;
-import com.java.siva.Hospital.Repository.HospitalRegisterRepository;
+import com.java.siva.Hospital.Repository.HospitalRepository;
 import com.java.siva.Hospital.exception.IdNotFoundException;
 
 @Service
 public class HospitalServiceImpl implements HospitalService {
 
-	private static final String Email = null;
 	@Autowired
-	private HospitalRegisterRepository userRegisterRepository;
+	private HospitalRepository userRegisterRepository;
 	@Autowired
 	private ModelMapper modelMapper;
 
@@ -78,26 +77,25 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public HospitalRegisterDto findById(Long hospitalId) {
+	public HospitalDto findById(Long hospitalId) {
 		Optional<Hospital> h = userRegisterRepository.findById(hospitalId);
 
 		if (h.isPresent()) {
-			HospitalRegisterDto hosp = modelMapper.map(h, HospitalRegisterDto.class);
+			HospitalDto hosp = modelMapper.map(h, HospitalDto.class);
 			return hosp;
 		} else {
 			throw new IdNotFoundException("HospitalRegister id not found with id: " + hospitalId);
 		}
 	}
-	@Override
-	public String findByEmailAndPassword(Hospital hospitalRegister) {
-		Hospital dto = userRegisterRepository.findByEmailAndPassword(hospitalRegister.getEmail(),
-				hospitalRegister.getPassword());
 
-		if (dto != null && dto.getPassword().equals(hospitalRegister.getPassword())&& dto.getEmail().equals(hospitalRegister.getEmail())) {
-			return "hospitalLoginDto details successufully";
-		} else {
-			return "Incorrect email and password";
-		}
-	}
+	 @Override
+	    public String login(String email, String password) {
+	        Hospital hospital = userRegisterRepository.findByEmailAndPassword(email, password);
+	        if (hospital != null) {
+	            return "siva";
+	        } else {
+	            return "reddy";
+	        }
+	    }
 
 }

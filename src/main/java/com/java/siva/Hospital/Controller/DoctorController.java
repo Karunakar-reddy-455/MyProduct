@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.java.siva.Hospital.Enum.Status;
 import com.java.siva.Hospital.Service.DoctorService;
 
 @RestController
+@CrossOrigin
 public class DoctorController {
 	@Autowired
 	private DoctorService doctorService;
@@ -48,6 +50,11 @@ public class DoctorController {
 	@GetMapping("/findByDoctor/{id}")
 	public ResponseEntity<DoctorDto> findByDoctor(@PathVariable Long id) {
 		return new ResponseEntity<DoctorDto>(doctorService.findByDoctor(id), HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping("/findByHospital/{hospitalId}")
+	public ResponseEntity<List<Doctor>> findByHospitalId(@PathVariable Long hospitalId) {
+		return new ResponseEntity<List<Doctor>>(doctorService.findDoctorsByHospitalId(hospitalId), HttpStatus.ACCEPTED);
 	}
 
 }

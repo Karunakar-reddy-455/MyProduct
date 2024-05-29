@@ -83,4 +83,9 @@ public class PatientServiceImpl implements PatientService {
 			throw new IdNotFoundException("Patient Id not found with id: " + id);
 		}
 	}
+
+	@Override
+	public List<Patient> findPatientByHospitalId(Long hospitalId) {
+		return patientRepository.findByHospitalId(hospitalId);
+	}
 }

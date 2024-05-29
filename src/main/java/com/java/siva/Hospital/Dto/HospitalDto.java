@@ -1,6 +1,6 @@
 package com.java.siva.Hospital.Dto;
 
-public class HospitalRegisterDto {
+public class HospitalDto {
 
 	private long hospitalId;
 	private String userName;
@@ -105,7 +105,7 @@ public class HospitalRegisterDto {
 	 * @param area
 	 * @param password
 	 */
-	public HospitalRegisterDto(long hospitalId, String userName, long mobile, String address, String email,
+	public HospitalDto(long hospitalId, String userName, long mobile, String address, String email,
 			int countryId, int stateId, int cityId, String area, String password) {
 		super();
 		this.hospitalId = hospitalId;
@@ -123,7 +123,7 @@ public class HospitalRegisterDto {
 	/**
 	 * 
 	 */
-	public HospitalRegisterDto() {
+	public HospitalDto() {
 		super();
 	}
 

@@ -1,7 +1,5 @@
 package com.java.siva.Hospital.Entity;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import com.java.siva.Hospital.Enum.Gender;
 import com.java.siva.Hospital.Enum.Status;
 
@@ -11,10 +9,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@CrossOrigin
 public class Patient {
 
 	@Id

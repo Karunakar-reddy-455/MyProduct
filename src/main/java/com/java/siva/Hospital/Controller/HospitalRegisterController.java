@@ -7,20 +7,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.java.siva.Hospital.Dto.HospitalRegisterDto;
+import com.java.siva.Hospital.Dto.HospitalDto;
 import com.java.siva.Hospital.Entity.Hospital;
 import com.java.siva.Hospital.Enum.Status;
 import com.java.siva.Hospital.Service.HospitalService;
 
 @RestController
+@CrossOrigin
 public class HospitalRegisterController {
 
 	@Autowired
@@ -31,8 +34,7 @@ public class HospitalRegisterController {
 	@PostMapping("/userregister")
 	public ResponseEntity<Hospital> registerUser(@RequestBody Hospital userRegister, Status status) {
 		logger.info("User Register Successfully");
-		return new ResponseEntity<Hospital>(userRegisterService.registerUser(userRegister, status),
-				HttpStatus.CREATED);
+		return new ResponseEntity<Hospital>(userRegisterService.registerUser(userRegister, status), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/fetchall")
@@ -55,14 +57,14 @@ public class HospitalRegisterController {
 	}
 
 	@GetMapping("/findbyid/{hospitalId}")
-	public HospitalRegisterDto findById(@PathVariable Long hospitalId) {
+	public HospitalDto findById(@PathVariable Long hospitalId) {
 		logger.info("User id identify Successfully");
 		return userRegisterService.findById(hospitalId);
 	}
 
 	@GetMapping("/login")
-	public String loginHospital(@RequestBody Hospital hospitalRegister){
-		 userRegisterService.findByEmailAndPassword(hospitalRegister);
-		 return"success";
+	public String login(@RequestParam String email, @RequestParam String password) {
+		return userRegisterService.login(email, password);
 	}
+
 }

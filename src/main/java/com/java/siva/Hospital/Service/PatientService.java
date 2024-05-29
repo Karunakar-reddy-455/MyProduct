@@ -18,5 +18,7 @@ public interface PatientService {
 	public Patient updatePatient(Patient patientDto, Long id);
 
 	public PatientDto findByPatient(Long id);
+	
+	public List<Patient> findPatientByHospitalId(Long hospitalId);
 
 }
