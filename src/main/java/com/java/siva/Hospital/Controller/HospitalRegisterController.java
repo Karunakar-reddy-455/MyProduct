@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.java.siva.Hospital.Dto.HospitalDto;
@@ -32,9 +31,9 @@ public class HospitalRegisterController {
 	private final Logger logger = LoggerFactory.getLogger(HospitalRegisterController.class);
 
 	@PostMapping("/userregister")
-	public ResponseEntity<Hospital> registerUser(@RequestBody Hospital userRegister, Status status) {
+	public ResponseEntity<HospitalDto> registerUser(@RequestBody HospitalDto hospitalDto, Status status) {
 		logger.info("User Register Successfully");
-		return new ResponseEntity<Hospital>(userRegisterService.registerUser(userRegister, status), HttpStatus.CREATED);
+		return new ResponseEntity<HospitalDto>(userRegisterService.registerUser(hospitalDto, status), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/fetchall")
@@ -51,9 +50,9 @@ public class HospitalRegisterController {
 	}
 
 	@PutMapping("/update/{hospitalId}")
-	public Hospital updateUser(@RequestBody Hospital userRegister, @PathVariable Long hospitalId) {
+	public HospitalDto updateUser(@RequestBody HospitalDto hospitalDto, @PathVariable Long hospitalId) {
 		logger.info("User Data Updated Successfully");
-		return userRegisterService.updateUser(userRegister, hospitalId);
+		return userRegisterService.updateUser(hospitalDto, hospitalId);
 	}
 
 	@GetMapping("/findbyid/{hospitalId}")
@@ -63,8 +62,8 @@ public class HospitalRegisterController {
 	}
 
 	@GetMapping("/login")
-	public String login(@RequestParam String email, @RequestParam String password) {
-		return userRegisterService.login(email, password);
+	public String loginHospital(@RequestBody Hospital hospitalRegister){
+		return userRegisterService.findByEmailAndPassword(hospitalRegister);
 	}
 
 }

@@ -23,8 +23,8 @@ public class PatientServiceImpl implements PatientService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public Patient addPatient(Patient patientDto, Status status, Gender gender) {
-		Patient savedPatient = patientRepository.save(modelMapper.map(patientDto, Patient.class));
+	public PatientDto addPatient(PatientDto patientDto, Status status, Gender gender) {
+
 		if (status != null) {
 			switch (status) {
 			case ACTIVE:
@@ -44,7 +44,9 @@ public class PatientServiceImpl implements PatientService {
 				break;
 			}
 		}
-		return modelMapper.map(savedPatient, Patient.class);
+		Patient patient = modelMapper.map(patientDto, Patient.class);
+		patient = patientRepository.save(patient);
+		return modelMapper.map(patient, PatientDto.class);
 
 	}
 
@@ -64,9 +66,11 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public Patient updatePatient(Patient patient, Long id) {
+	public PatientDto updatePatient(PatientDto patientDto, Long id) {
 		if (patientRepository.findById(id).isPresent()) {
-			return patientRepository.save(patient);
+			Patient patient = modelMapper.map(patientDto,Patient.class);
+			patient= patientRepository.save(patient);
+			return  modelMapper.map(patient,PatientDto.class);
 		} else {
 			throw new IdNotFoundException("Patient Id is not present " + " " + id);
 		}

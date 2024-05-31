@@ -6,7 +6,7 @@ import com.java.siva.Hospital.Enum.Gender;
 import com.java.siva.Hospital.Enum.Status;
 
 public class DoctorDto {
-	private long id;
+	private long doctorId;
 	private String doctorName;
 	private Date dateOfBirth;
 	private Gender gender;
@@ -18,12 +18,12 @@ public class DoctorDto {
 	private String languageSpoke;
 	private Status status;
 
-	public long getId() {
-		return id;
+	public long getDoctorId() {
+		return doctorId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setDoctorId(long doctorId) {
+		this.doctorId = doctorId;
 	}
 
 	public String getDoctorName() {
@@ -104,50 +104,6 @@ public class DoctorDto {
 
 	public void setStatus(Status status) {
 		this.status = status;
-	}
-
-	/**
-	 * @param id
-	 * @param doctorName
-	 * @param dateOfBirth
-	 * @param gender
-	 * @param phoneNumber
-	 * @param email
-	 * @param address
-	 * @param medicalLicenseNumber
-	 * @param specialization
-	 * @param languageSpoke
-	 * @param status
-	 */
-	public DoctorDto(long id, String doctorName, Date dateOfBirth, Gender gender, long phoneNumber, String email,
-			String address, int medicalLicenseNumber, String specialization, String languageSpoke, Status status) {
-		super();
-		this.id = id;
-		this.doctorName = doctorName;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.address = address;
-		this.medicalLicenseNumber = medicalLicenseNumber;
-		this.specialization = specialization;
-		this.languageSpoke = languageSpoke;
-		this.status = status;
-	}
-
-	/**
-	 * 
-	 */
-	public DoctorDto() {
-		super();
-	}
-
-	@Override
-	public String toString() {
-		return "DoctorDto [id=" + id + ", doctorName=" + doctorName + ", dateOfBirth=" + dateOfBirth + ", gender="
-				+ gender + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address
-				+ ", medicalLicenseNumber=" + medicalLicenseNumber + ", specialization=" + specialization
-				+ ", languageSpoke=" + languageSpoke + ", status=" + status + "]";
 	}
 
 }

@@ -22,17 +22,20 @@ public class MedicineServiceImpl implements MedicineService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public Medicine addMedicine(Medicine medicine, Status status) {
+	public MedicineDto addMedicine(MedicineDto medicineDto, Status status) {
 		if (status != null) {
 			switch (status) {
 			case ACTIVE:
 			case BLOCKED:
 			case INACTIVE:
-				medicine.setStatus(status);
+				medicineDto.setStatus(status);
 				break;
 			}
 		}
-		return medicineRepository.save(medicine);
+
+		Medicine medicine = modelMapper.map(medicineDto, Medicine.class);
+		medicine = medicineRepository.save(medicine);
+		return modelMapper.map(medicine, MedicineDto.class);
 	}
 
 	@Override
@@ -53,7 +56,6 @@ public class MedicineServiceImpl implements MedicineService {
 	public MedicineDto findByMedicine(Long id) {
 		Optional<Medicine> medicine = medicineRepository.findById(id);
 		if (medicine.isPresent()) {
-			// ModelMapper modelMapper = new ModelMapper();
 			return modelMapper.map(medicine, MedicineDto.class);
 
 		} else {
@@ -62,10 +64,12 @@ public class MedicineServiceImpl implements MedicineService {
 	}
 
 	@Override
-	public Medicine updateMedicine(Medicine medicine, Long id) {
+	public MedicineDto updateMedicine(MedicineDto MedicineDto, Long id) {
 		Optional<Medicine> m = medicineRepository.findById(id);
 		if (m.isPresent()) {
-			return medicineRepository.save(medicine);
+			Medicine medicine = modelMapper.map(MedicineDto,Medicine.class);
+			medicine= medicineRepository.save(medicine);
+			return  modelMapper.map(medicine, MedicineDto.class);
 		} else {
 			throw new IdNotFoundException("Medicine id not present" + " " + id);
 		}

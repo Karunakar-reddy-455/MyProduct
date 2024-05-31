@@ -111,6 +111,22 @@ public class Doctor {
 		this.status = status;
 	}
 
+	public long getHospitalId() {
+		return hospitalId;
+	}
+
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
+	}
+
+	public long getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(long doctorId) {
+		this.doctorId = doctorId;
+	}
+
 	/**
 	 * @param id
 	 * @param doctorName
@@ -149,30 +165,12 @@ public class Doctor {
 		super();
 	}
 
-	public long getDoctorId() {
-		return doctorId;
-	}
-
-	public void setDoctorId(long doctorId) {
-		this.doctorId = doctorId;
-	}
-
-	
-
 	@Override
 	public String toString() {
 		return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName + ", dateOfBirth=" + dateOfBirth
 				+ ", gender=" + gender + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address
 				+ ", medicalLicenseNumber=" + medicalLicenseNumber + ", specialization=" + specialization
 				+ ", languageSpoke=" + languageSpoke + ", status=" + status + ", hospitalId=" + hospitalId + "]";
-	}
-
-	public long getHospitalId() {
-		return hospitalId;
-	}
-
-	public void setHospitalId(long hospitalId) {
-		this.hospitalId = hospitalId;
 	}
 
 }

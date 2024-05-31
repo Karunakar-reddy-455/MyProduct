@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.java.siva.Hospital.Dto.CountryDto;
 import com.java.siva.Hospital.Entity.Country;
 import com.java.siva.Hospital.Service.CountryService;
 
@@ -25,8 +26,8 @@ public class CountryController {
 	private CountryService countryService;
 
 	@PostMapping("/addcountry")
-	public ResponseEntity<Country> save(@RequestBody Country country) {
-		return new ResponseEntity<Country>(countryService.saveCountry(country), HttpStatus.ACCEPTED);
+	public ResponseEntity<CountryDto> save(@RequestBody CountryDto countryDto) {
+		return new ResponseEntity<CountryDto>(countryService.saveCountry(countryDto), HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/allcountrys")
@@ -41,13 +42,13 @@ public class CountryController {
 	}
 
 	@PutMapping("/updatecountry/{countryId}")
-	public ResponseEntity<Country> updateCountry(@RequestBody Country country, @PathVariable Long countryId) {
-		return new ResponseEntity<Country>(countryService.updateCountry(country, countryId), HttpStatus.ACCEPTED);
+	public ResponseEntity<CountryDto> updateCountry(@RequestBody CountryDto countryDto, @PathVariable Long countryId) {
+		return new ResponseEntity<CountryDto>(countryService.updateCountry(countryDto, countryId), HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/allcountrys/{countryId}")
-	public ResponseEntity<Country> findBiCountryId(@PathVariable Long countryId) {
-		return new ResponseEntity<Country>(countryService.findBiCountrId(countryId), HttpStatus.OK);
+	public ResponseEntity<CountryDto> findBiCountryId(@PathVariable Long countryId) {
+		return new ResponseEntity<CountryDto>(countryService.findBiCountrId(countryId), HttpStatus.OK);
 	}
 
 }

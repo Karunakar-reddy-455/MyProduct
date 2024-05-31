@@ -1,31 +1,14 @@
 package com.java.siva.Hospital.Dto;
 
+import com.java.siva.Hospital.Enum.Status;
+
 public class MedicineDto {
 	private long id;
 	private String medisienName;
 	private int medisienPower;
 	private int quantity;
-
-	/**
-	 * 
-	 */
-	public MedicineDto() {
-		super();
-	}
-
-	/**
-	 * @param id
-	 * @param medisienName
-	 * @param medisienPower
-	 * @param quantity
-	 */
-	public MedicineDto(long id, String medisienName, int medisienPower, int quantity) {
-		super();
-		this.id = id;
-		this.medisienName = medisienName;
-		this.medisienPower = medisienPower;
-		this.quantity = quantity;
-	}
+	private Status status;
+	private double price;
 
 	public long getId() {
 		return id;
@@ -59,10 +42,20 @@ public class MedicineDto {
 		this.quantity = quantity;
 	}
 
-	@Override
-	public String toString() {
-		return "MedicineDto [id=" + id + ", medisienName=" + medisienName + ", medisienPower=" + medisienPower
-				+ ", quantity=" + quantity + "]";
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 }

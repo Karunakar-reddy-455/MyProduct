@@ -9,13 +9,13 @@ import com.java.siva.Hospital.Enum.Status;
 
 public interface DoctorService {
 
-	public Doctor addDoctor(Doctor doctor, Status status, Gender gender);
+	public DoctorDto addDoctor(DoctorDto doctorDto, Status status, Gender gender);
 
 	public List<Doctor> fetchAll();
 
 	public void deleteDoctor(Long id);
 
-	public Doctor updateDoctor(Doctor doctor, Long id);
+	public DoctorDto updateDoctor(DoctorDto doctorDto, Long id);
 
 	public DoctorDto findByDoctor(Long id);
 	

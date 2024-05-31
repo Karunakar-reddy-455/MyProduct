@@ -60,34 +60,4 @@ public class SupplierDto {
 		this.status = status;
 	}
 
-	/**
-	 * @param id
-	 * @param hospitalId
-	 * @param type
-	 * @param userName
-	 * @param password
-	 * @param status
-	 */
-	public SupplierDto(long id, long hospitalId, Type type, String userName, String password, Status status) {
-		super();
-		this.id = id;
-		this.hospitalId = hospitalId;
-		this.type = type;
-		this.userName = userName;
-		this.password = password;
-		this.status = status;
-	}
-
-	/**
-	 * 
-	 */
-	public SupplierDto() {
-		super();
-	}
-
-	@Override
-	public String toString() {
-		return "SupplierDto [id=" + id + ", hospitalId=" + hospitalId + ", type=" + type + ", userName=" + userName
-				+ ", password=" + password + ", status=" + status + "]";
-	}
 }

@@ -27,8 +27,8 @@ public class DoctorController {
 	private DoctorService doctorService;
 
 	@PostMapping("/addDoctor")
-	public ResponseEntity<Doctor> saveDoctor(@RequestBody Doctor doctor, Status status, Gender gender) {
-		return new ResponseEntity<Doctor>(doctorService.addDoctor(doctor, status, gender), HttpStatus.ACCEPTED);
+	public ResponseEntity<DoctorDto> saveDoctor(@RequestBody DoctorDto doctorDto, Status status, Gender gender) {
+		return new ResponseEntity<DoctorDto>(doctorService.addDoctor(doctorDto, status, gender), HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/fetchAllDoctor")
@@ -43,8 +43,8 @@ public class DoctorController {
 	}
 
 	@PutMapping("/updateDoctor/{id}")
-	public ResponseEntity<Doctor> updateDoctor(@RequestBody Doctor doctor, @PathVariable Long id) {
-		return new ResponseEntity<Doctor>(doctorService.updateDoctor(doctor, id), HttpStatus.OK);
+	public ResponseEntity<DoctorDto> updateDoctor(@RequestBody DoctorDto doctorDto, @PathVariable Long id) {
+		return new ResponseEntity<DoctorDto>(doctorService.updateDoctor(doctorDto, id), HttpStatus.OK);
 	}
 
 	@GetMapping("/findByDoctor/{id}")

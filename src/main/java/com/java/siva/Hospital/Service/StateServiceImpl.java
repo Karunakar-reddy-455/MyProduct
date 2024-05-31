@@ -1,10 +1,13 @@
 package com.java.siva.Hospital.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.siva.Hospital.Dto.StateDto;
 import com.java.siva.Hospital.Entity.State;
 import com.java.siva.Hospital.Repository.StateRepository;
 import com.java.siva.Hospital.exception.IdNotFoundException;
@@ -14,10 +17,15 @@ public class StateServiceImpl implements StateService {
 
 	@Autowired
 	private StateRepository stateRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Override
-	public State saveState(State state) {
-		return stateRepository.save(state);
+	public StateDto saveState(StateDto stateDto) {
+		State state = modelMapper.map(stateDto,State.class);
+		state = stateRepository.save(state);
+		return  modelMapper.map(state,StateDto.class);
 	}
 
 	@Override
@@ -37,9 +45,11 @@ public class StateServiceImpl implements StateService {
 	}
 
 	@Override
-	public State updateState(State state, Long stateId) {
+	public StateDto updateState(StateDto stateDto, Long stateId) {
 		if (stateRepository.findById(stateId).isPresent()) {
-			return stateRepository.save(state);
+			State state = modelMapper.map(stateDto,State.class);
+			state = stateRepository.save(state);
+			return modelMapper.map(state,StateDto.class);
 		} else {
 			throw new IdNotFoundException("stateId Id is Not present " + " " + stateId);
 		}
@@ -47,9 +57,10 @@ public class StateServiceImpl implements StateService {
 	}
 
 	@Override
-	public State findByStateId(Long stateId) {
-		if (stateRepository.findById(stateId).isPresent()) {
-			return stateRepository.findById(stateId).get();
+	public StateDto findByStateId(Long stateId) {
+		Optional<State> state = stateRepository.findById(stateId);
+		if (state.isPresent()) {
+			return modelMapper.map(state, StateDto.class);
 
 		} else {
 			throw new IdNotFoundException("stateId Id is Not present " + " " + stateId);

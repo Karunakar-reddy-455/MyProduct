@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.java.siva.Hospital.Dto.StateDto;
 import com.java.siva.Hospital.Entity.State;
 import com.java.siva.Hospital.Service.StateService;
 
@@ -23,8 +24,8 @@ public class StateController {
 	private StateService stateService;
 
 	@PostMapping("addState")
-	public ResponseEntity<State> save(@RequestBody State state) {
-		return new ResponseEntity<State>(stateService.saveState(state), HttpStatus.ACCEPTED);
+	public ResponseEntity<StateDto> save(@RequestBody StateDto stateDto) {
+		return new ResponseEntity<StateDto>(stateService.saveState(stateDto), HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("getState")
@@ -39,13 +40,13 @@ public class StateController {
 	}
 
 	@PutMapping("state/{stateId}")
-	public ResponseEntity<State> updateState(@RequestBody State state, @PathVariable Long stateId) {
-		return new ResponseEntity<State>(stateService.saveState(state), HttpStatus.ACCEPTED);
+	public ResponseEntity<StateDto> updateState(@RequestBody StateDto stateDto, @PathVariable Long stateId) {
+		return new ResponseEntity<StateDto>(stateService.saveState(stateDto), HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("findstate/{stateId}")
-	public ResponseEntity<State> findByStateId(@PathVariable Long stateId) {
-		return new ResponseEntity<State>(stateService.findByStateId(stateId), HttpStatus.ACCEPTED);
+	public ResponseEntity<StateDto> findByStateId(@PathVariable Long stateId) {
+		return new ResponseEntity<StateDto>(stateService.findByStateId(stateId), HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("api/{countryId}")

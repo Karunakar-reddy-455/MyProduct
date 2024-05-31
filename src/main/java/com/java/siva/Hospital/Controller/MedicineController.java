@@ -27,8 +27,8 @@ public class MedicineController {
 	private MedicineService medicineService;
 
 	@PostMapping("/addMedicine")
-	public ResponseEntity<Medicine> addMedicine(@RequestBody Medicine medicine, Status status) {
-		return new ResponseEntity<Medicine>(medicineService.addMedicine(medicine, status), HttpStatus.CREATED);
+	public ResponseEntity<MedicineDto> addMedicine(@RequestBody MedicineDto medicineDto, Status status) {
+		return new ResponseEntity<MedicineDto>(medicineService.addMedicine(medicineDto, status), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/getallmedicine")
@@ -42,8 +42,8 @@ public class MedicineController {
 	}
 
 	@PutMapping("/updateMadicine/{id}")
-	public ResponseEntity<Medicine> updateMedicine(@RequestBody Medicine medicine, @PathVariable Long id) {
-		return new ResponseEntity<>(medicineService.updateMedicine(medicine, id), HttpStatus.IM_USED);
+	public ResponseEntity<MedicineDto> updateMedicine(@RequestBody MedicineDto medicineDto, @PathVariable Long id) {
+		return new ResponseEntity<>(medicineService.updateMedicine(medicineDto, id), HttpStatus.IM_USED);
 	}
 
 	@GetMapping("/findBYMedicine/{id}")

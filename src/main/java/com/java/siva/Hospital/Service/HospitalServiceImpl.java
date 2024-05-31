@@ -22,18 +22,22 @@ public class HospitalServiceImpl implements HospitalService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public Hospital registerUser(Hospital hospitalRegister, Status status) {
+	public HospitalDto registerUser(HospitalDto hospitalDto, Status status) {
 
 		if (status != null) {
 			switch (status) {
 			case ACTIVE:
 			case BLOCKED:
 			case INACTIVE:
-				hospitalRegister.setStatus(status);
+				hospitalDto.setStatus(status);
 				break;
 			}
 		}
-		return userRegisterRepository.save(hospitalRegister);
+		
+		Hospital hospital = modelMapper.map(hospitalDto,Hospital.class);
+		hospital =  userRegisterRepository.save(hospital);
+		return modelMapper.map(hospital, HospitalDto.class);
+		
 	}
 
 	@Override
@@ -54,25 +58,14 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public Hospital updateUser(Hospital userRegister, Long hospitalId) {
-		Optional<Hospital> hospitalRegisterOptional = userRegisterRepository.findById(hospitalId);
-		if (hospitalRegisterOptional.isPresent()) {
-			Hospital hospital = hospitalRegisterOptional.get();
-			hospital.setAddress(userRegister.getAddress());
-			hospital.setArea(userRegister.getArea());
-			hospital.setCityId(userRegister.getCityId());
-			hospital.setCountryId(userRegister.getCountryId());
-			hospital.setEmail(userRegister.getEmail());
-			hospital.setHospitalId(userRegister.getHospitalId());
-			hospital.setMobile(userRegister.getMobile());
-			hospital.setPassword(userRegister.getPassword());
-			hospital.setStateId(userRegister.getStateId());
-			hospital.setStatus(userRegister.getStatus());
-			hospital.setUserName(userRegister.getUserName());
-
-			return userRegisterRepository.save(hospital);
-		} else {
-			throw new IdNotFoundException("HospitalRegister id not found with id: " + hospitalId);
+	public HospitalDto updateUser(HospitalDto hospitalDto, Long hospitalId) {
+		Hospital hospita = modelMapper.map(hospitalDto, Hospital.class);
+		hospita = userRegisterRepository.save(hospita);
+		if(userRegisterRepository.findById(hospitalId).isPresent()) {
+			return modelMapper.map(hospita, HospitalDto.class);
+		} 
+		else {
+			throw new IdNotFoundException("HospitalUpdated id not found with id: " + hospitalId);
 		}
 	}
 
@@ -88,14 +81,16 @@ public class HospitalServiceImpl implements HospitalService {
 		}
 	}
 
-	 @Override
-	    public String login(String email, String password) {
-	        Hospital hospital = userRegisterRepository.findByEmailAndPassword(email, password);
-	        if (hospital != null) {
-	            return "siva";
-	        } else {
-	            return "reddy";
-	        }
-	    }
+	@Override
+	public String findByEmailAndPassword(Hospital hospital) {
+		Hospital dto = userRegisterRepository.findByEmailAndPassword(hospital.getEmail(),
+				hospital.getPassword());
+
+		if (dto != null && dto.getPassword().equals(hospital.getPassword()) && dto.getEmail().equals(hospital.getEmail())) {
+			return "hospitalLogin details successufully";
+		} else {
+			return "Incorrect email and password";
+		}
+	}
 
 }

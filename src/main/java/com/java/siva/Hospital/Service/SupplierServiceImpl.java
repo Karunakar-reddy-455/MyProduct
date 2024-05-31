@@ -19,16 +19,19 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Autowired
 	private SupplierRepository supplierRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Override
-	public Supplier createSupplier(Supplier supplier, Type type, Status status) {
+	public SupplierDto createSupplier(SupplierDto supplierDto, Type type, Status status) {
 		if (type != null) {
 			switch (type) {
 			case ADMIN:
 			case EMP:
 			case MASTER:
 			case OTHER:
-				supplier.setType(type);
+				supplierDto.setType(type);
 				break;
 			}
 		}
@@ -37,11 +40,13 @@ public class SupplierServiceImpl implements SupplierService {
 			case ACTIVE:
 			case BLOCKED:
 			case INACTIVE:
-				supplier.setStatus(status);
+				supplierDto.setStatus(status);
 				break;
 			}
 		}
-		return supplierRepository.save(supplier);
+		Supplier supplier = modelMapper.map(supplierDto,Supplier.class);
+		supplier = supplierRepository.save(supplier);
+		return modelMapper.map(supplier,SupplierDto.class);
 	}
 
 	@Override
@@ -50,10 +55,12 @@ public class SupplierServiceImpl implements SupplierService {
 	}
 
 	@Override
-	public Supplier updateSupplier(Supplier supplier, Long id) {
+	public SupplierDto updateSupplier(SupplierDto supplierDto, Long id) {
 		Optional<Supplier> supp = supplierRepository.findById(id);
 		if (supp.isPresent()) {
-			return supplierRepository.save(supplier);
+			Supplier supplier = modelMapper.map(supplierDto,Supplier.class);
+			supplier = supplierRepository.save(supplier);
+			return modelMapper.map(supplier,SupplierDto.class);
 		} else {
 			throw new IdNotFoundException("Supplier Id is not present" + " " + id);
 		}

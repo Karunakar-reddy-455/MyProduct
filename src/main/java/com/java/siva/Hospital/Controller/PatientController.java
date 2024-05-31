@@ -27,8 +27,8 @@ public class PatientController {
 	private PatientService patientService;
 
 	@PostMapping("/addpatient")
-	public ResponseEntity<Patient> createPatient(@RequestBody Patient patient, Status status, Gender gender) {
-		return new ResponseEntity<Patient>(patientService.addPatient(patient, status, gender),
+	public ResponseEntity<PatientDto> createPatient(@RequestBody PatientDto patientDto, Status status, Gender gender) {
+		return new ResponseEntity<PatientDto>(patientService.addPatient(patientDto, status, gender),
 				HttpStatus.ACCEPTED);
 	}
 
@@ -49,8 +49,8 @@ public class PatientController {
 	}
 	
 	@PutMapping("/updatePatient/{id}")
-	public ResponseEntity<Patient>updatePatient(@RequestBody Patient patient,@PathVariable Long id){
-		return new ResponseEntity<Patient>(patientService.updatePatient(patient, id), HttpStatus.ACCEPTED);
+	public ResponseEntity<PatientDto>updatePatient(@RequestBody PatientDto patientDto,@PathVariable Long id){
+		return new ResponseEntity<PatientDto>(patientService.updatePatient(patientDto, id), HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/findPatientbyhospitalId/{hospitalId}")

@@ -19,16 +19,18 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Autowired
 	private DoctorRepository doctorRepository;
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Override
-	public Doctor addDoctor(Doctor doctor, Status status, Gender gender) {
+	public DoctorDto addDoctor(DoctorDto doctordto, Status status, Gender gender) {
 
 		if (status != null) {
 			switch (status) {
 			case ACTIVE:
 			case INACTIVE:
 			case BLOCKED:
-				doctor.setStatus(status);
+				doctordto.setStatus(status);
 				break;
 			}
 		}
@@ -38,12 +40,13 @@ public class DoctorServiceImpl implements DoctorService {
 			case MALE:
 			case FEMALE:
 			case OTHER:
-				doctor.setGender(gender);
+				doctordto.setGender(gender);
 				break;
 			}
 		}
-
-		return doctorRepository.save(doctor);
+		Doctor doctor = modelMapper.map(doctordto, Doctor.class);
+		doctor = doctorRepository.save(doctor);
+		return modelMapper.map(doctor, DoctorDto.class);
 	}
 
 	@Override
@@ -61,9 +64,11 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	@Override
-	public Doctor updateDoctor(Doctor doctor, Long id) {
+	public DoctorDto updateDoctor(DoctorDto doctorDto, Long id) {
 		if (doctorRepository.findById(id).isPresent()) {
-			return doctorRepository.save(doctor);
+			Doctor doctor =  modelMapper.map(doctorDto, Doctor.class);
+			doctor =doctorRepository.save(doctor);
+			return modelMapper.map(doctor, DoctorDto.class);
 		} else {
 			throw new IdNotFoundException("Doctor Id is not present in Tabel" + " " + id);
 		}
@@ -73,7 +78,6 @@ public class DoctorServiceImpl implements DoctorService {
 	public DoctorDto findByDoctor(Long id) {
 		Optional<Doctor> doctor = doctorRepository.findById(id);
 		if (doctor.isPresent()) {
-			ModelMapper modelMapper = new ModelMapper();
 			return modelMapper.map(doctor, DoctorDto.class);
 		} else {
 			throw new IdNotFoundException("Doctor not found with id: " + id);

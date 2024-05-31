@@ -8,13 +8,13 @@ import com.java.siva.Hospital.Enum.Status;
 
 public interface MedicineService {
 
-	public Medicine addMedicine(Medicine medicine, Status status);
+	public MedicineDto addMedicine(MedicineDto medicineDto, Status status);
 
 	public List<Medicine> allMedicine();
 
 	public void deleteMedicine(Long id);
 
-	public Medicine updateMedicine(Medicine medicine, Long id);
+	public MedicineDto updateMedicine(MedicineDto medicineDto, Long id);
 
 	public MedicineDto findByMedicine(Long id);
 

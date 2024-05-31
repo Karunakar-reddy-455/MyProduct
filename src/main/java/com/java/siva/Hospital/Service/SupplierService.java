@@ -9,11 +9,11 @@ import com.java.siva.Hospital.Enum.Type;
 
 public interface SupplierService {
 
-	public Supplier createSupplier(Supplier supplier, Type type, Status status);
+	public SupplierDto createSupplier(SupplierDto supplierDto, Type type, Status status);
 
 	public List<Supplier> listOfSupplier();
 
-	public Supplier updateSupplier(Supplier supplier, Long id);
+	public SupplierDto updateSupplier(SupplierDto supplierDto, Long id);
 
 	public String deleteSupplier(Long id);
 

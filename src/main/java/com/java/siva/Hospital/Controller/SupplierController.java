@@ -28,8 +28,8 @@ public class SupplierController {
 	private SupplierService supplierService;
 
 	@PostMapping("/addsupplier")
-	public ResponseEntity<Supplier> saveSupplier(@RequestBody Supplier supplier, Type type, Status status) {
-		return new ResponseEntity<Supplier>(supplierService.createSupplier(supplier, type, status), HttpStatus.CREATED);
+	public ResponseEntity<SupplierDto> saveSupplier(@RequestBody SupplierDto supplierDto, Type type, Status status) {
+		return new ResponseEntity<SupplierDto>(supplierService.createSupplier(supplierDto, type, status), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/getAllSuppliers")
@@ -38,8 +38,8 @@ public class SupplierController {
 	}
 
 	@PutMapping("/updateSupplier/{id}")
-	public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supplier, @PathVariable Long id) {
-		return new ResponseEntity<Supplier>(supplierService.updateSupplier(supplier, id), HttpStatus.CREATED);
+	public ResponseEntity<SupplierDto> updateSupplier(@RequestBody SupplierDto supplierDto, @PathVariable Long id) {
+		return new ResponseEntity<SupplierDto>(supplierService.updateSupplier(supplierDto, id), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/deletedSupplier/{id}")

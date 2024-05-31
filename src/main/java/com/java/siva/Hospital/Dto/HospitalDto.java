@@ -1,5 +1,7 @@
 package com.java.siva.Hospital.Dto;
 
+import com.java.siva.Hospital.Enum.Status;
+
 public class HospitalDto {
 
 	private long hospitalId;
@@ -12,6 +14,7 @@ public class HospitalDto {
 	private int cityId;
 	private String area;
 	private String password;
+	private Status status;
 
 	public long getHospitalId() {
 		return hospitalId;
@@ -93,45 +96,14 @@ public class HospitalDto {
 		this.password = password;
 	}
 
-	/**
-	 * @param hospitalId
-	 * @param userName
-	 * @param mobile
-	 * @param address
-	 * @param email
-	 * @param countryId
-	 * @param stateId
-	 * @param cityId
-	 * @param area
-	 * @param password
-	 */
-	public HospitalDto(long hospitalId, String userName, long mobile, String address, String email,
-			int countryId, int stateId, int cityId, String area, String password) {
-		super();
-		this.hospitalId = hospitalId;
-		this.userName = userName;
-		this.mobile = mobile;
-		this.address = address;
-		this.email = email;
-		this.countryId = countryId;
-		this.stateId = stateId;
-		this.cityId = cityId;
-		this.area = area;
-		this.password = password;
+	public Status getStatus() {
+		return status;
 	}
 
-	/**
-	 * 
-	 */
-	public HospitalDto() {
-		super();
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "HospitalRegisterDto [hospitalId=" + hospitalId + ", userName=" + userName + ", mobile=" + mobile
-				+ ", address=" + address + ", email=" + email + ", countryId=" + countryId + ", stateId=" + stateId
-				+ ", cityId=" + cityId + ", area=" + area + ", password=" + password + "]";
-	}
+	
 
 }

@@ -1,16 +1,13 @@
 package com.java.siva.Hospital.Dto;
 
-
 import com.java.siva.Hospital.Enum.Gender;
 import com.java.siva.Hospital.Enum.Status;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
-
 public class PatientDto {
 
-	
 	private long patientId;
 	private String firstName;
 	private String lastName;
@@ -26,45 +23,6 @@ public class PatientDto {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	private long hospitalId;
-
-	/**
-	 * 
-	 */
-	public PatientDto() {
-		super();
-	}
-
-	/**
-	 * @param id
-	 * @param firstName
-	 * @param lastName
-	 * @param middleName
-	 * @param gender
-	 * @param email
-	 * @param phone
-	 * @param adhere
-	 * @param place
-	 * @param stateId
-	 * @param countryId
-	 * @param status
-	 */
-	public PatientDto(long patientId, String firstName, String lastName, String middleName, Gender gender, String email,
-			long phone, long adhar, String place, int stateId, int countryId, Status status, long hospitalId) {
-		super();
-		this.patientId = patientId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.middleName = middleName;
-		this.gender = gender;
-		this.email = email;
-		this.phone = phone;
-		this.adhar = adhar;
-		this.place = place;
-		this.stateId = stateId;
-		this.countryId = countryId;
-		this.status = status;
-		this.hospitalId = hospitalId;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -160,14 +118,6 @@ public class PatientDto {
 
 	public void setPatientId(long patientId) {
 		this.patientId = patientId;
-	}
-
-	@Override
-	public String toString() {
-		return "PatientRegistation [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", middleName=" + middleName + ", gender=" + gender + ", email=" + email + ", phone=" + phone
-				+ ", adhar=" + adhar + ", place=" + place + ", stateId=" + stateId + ", countryId=" + countryId
-				+ ", status=" + status + ", hospitalId=" + hospitalId + "]";
 	}
 
 	public long getHospitalId() {
