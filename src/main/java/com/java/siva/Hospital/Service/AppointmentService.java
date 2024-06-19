@@ -2,6 +2,7 @@ package com.java.siva.Hospital.Service;
 
 import java.util.List;
 
+import com.java.siva.Hospital.Dto.AppointmentDto;
 import com.java.siva.Hospital.Entity.Appointment;
 
 public interface AppointmentService {
@@ -13,5 +14,8 @@ public interface AppointmentService {
 	public List<Appointment> fetchAllAppointments();
 	
 	public String deleteAppointment(Long id);
+	
+	List<AppointmentDto> joinTabel(Long hospitalId);
+
 
 }

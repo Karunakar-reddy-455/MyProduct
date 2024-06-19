@@ -8,5 +8,5 @@ import com.java.siva.Hospital.Entity.Hospital;
 @Repository
 public interface HospitalRepository extends JpaRepository<Hospital, Long> {
 
-	public Hospital findByEmailAndPassword(String email,String password);
+	public Hospital findByHospitalEmailAndPassword(String hospitalEmail,String password);
 }

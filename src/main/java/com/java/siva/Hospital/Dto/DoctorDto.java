@@ -17,6 +17,7 @@ public class DoctorDto {
 	private String specialization;
 	private String languageSpoke;
 	private Status status;
+	private long hospitalId;
 
 	public long getDoctorId() {
 		return doctorId;
@@ -104,6 +105,14 @@ public class DoctorDto {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public long getHospitalId() {
+		return hospitalId;
+	}
+
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
 	}
 
 }

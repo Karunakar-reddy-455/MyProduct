@@ -33,7 +33,8 @@ public class HospitalRegisterController {
 	@PostMapping("/userregister")
 	public ResponseEntity<HospitalDto> registerUser(@RequestBody HospitalDto hospitalDto, Status status) {
 		logger.info("User Register Successfully");
-		return new ResponseEntity<HospitalDto>(userRegisterService.registerUser(hospitalDto, status), HttpStatus.CREATED);
+		return new ResponseEntity<HospitalDto>(userRegisterService.registerUser(hospitalDto, status),
+				HttpStatus.CREATED);
 	}
 
 	@GetMapping("/fetchall")
@@ -62,7 +63,7 @@ public class HospitalRegisterController {
 	}
 
 	@GetMapping("/login")
-	public String loginHospital(@RequestBody Hospital hospitalRegister){
+	public String loginHospital(@RequestBody Hospital hospitalRegister) {
 		return userRegisterService.findByEmailAndPassword(hospitalRegister);
 	}
 

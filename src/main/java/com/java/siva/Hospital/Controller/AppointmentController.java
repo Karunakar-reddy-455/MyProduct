@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.java.siva.Hospital.Dto.AppointmentDto;
 import com.java.siva.Hospital.Entity.Appointment;
 import com.java.siva.Hospital.Service.AppointmentService;
 
@@ -48,11 +49,16 @@ public class AppointmentController {
 		LOGGER.info("Retrieved all appointments: {}", appointments);
 		return new ResponseEntity<>(appointments, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/appointment/{id}")
-	public ResponseEntity<String> deleteAppointment(@RequestBody Long id){
+	public ResponseEntity<String> deleteAppointment(@RequestBody Long id) {
 		LOGGER.info("Appointment Deleted }");
-		return new ResponseEntity<>(appointmentService.deleteAppointment(id),HttpStatus.OK);
+		return new ResponseEntity<>(appointmentService.deleteAppointment(id), HttpStatus.OK);
+	}
+
+	@GetMapping("/hospital/{hospitalId}")
+	public List<AppointmentDto> getAppointmentsByHospitalId(@PathVariable long hospitalId) {
+		return appointmentService.joinTabel(hospitalId);
 	}
 
 }

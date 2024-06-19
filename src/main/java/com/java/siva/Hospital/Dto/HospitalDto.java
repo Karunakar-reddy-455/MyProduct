@@ -5,10 +5,10 @@ import com.java.siva.Hospital.Enum.Status;
 public class HospitalDto {
 
 	private long hospitalId;
-	private String userName;
+	private String hospitalName;
 	private long mobile;
-	private String address;
-	private String email;
+	private String hospitalAddress;
+	private String hospitalEmail;
 	private int countryId;
 	private int stateId;
 	private int cityId;
@@ -24,36 +24,12 @@ public class HospitalDto {
 		this.hospitalId = hospitalId;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
 	public long getMobile() {
 		return mobile;
 	}
 
 	public void setMobile(long mobile) {
 		this.mobile = mobile;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public int getCountryId() {
@@ -104,6 +80,28 @@ public class HospitalDto {
 		this.status = status;
 	}
 
-	
+	public String getHospitalName() {
+		return hospitalName;
+	}
+
+	public void setHospitalName(String hospitalName) {
+		this.hospitalName = hospitalName;
+	}
+
+	public String getHospitalEmail() {
+		return hospitalEmail;
+	}
+
+	public void setHospitalEmail(String hospitalEmail) {
+		this.hospitalEmail = hospitalEmail;
+	}
+
+	public String getHospitalAddress() {
+		return hospitalAddress;
+	}
+
+	public void setHospitalAddress(String hospitalAddress) {
+		this.hospitalAddress = hospitalAddress;
+	}
 
 }

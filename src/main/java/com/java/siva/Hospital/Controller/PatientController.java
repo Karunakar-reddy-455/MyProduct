@@ -53,8 +53,10 @@ public class PatientController {
 		return new ResponseEntity<PatientDto>(patientService.updatePatient(patientDto, id), HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/findPatientbyhospitalId/{hospitalId}")
-	public ResponseEntity<List<Patient>> findPatientByHospitalId(@PathVariable Long hospitalId){
-		return new ResponseEntity<List<Patient>>(patientService.findPatientByHospitalId(hospitalId),HttpStatus.ACCEPTED);
+	@GetMapping("/findPatientusingHospitalId/{hospitalId}")
+	public List<Patient> fetchByPatientUsingHospitalId(@PathVariable Long hospitalId){
+		return patientService.findPatientByHospitalId(hospitalId);
 	}
+	
+
 }

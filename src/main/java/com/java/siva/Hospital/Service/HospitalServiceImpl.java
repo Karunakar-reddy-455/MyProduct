@@ -83,10 +83,10 @@ public class HospitalServiceImpl implements HospitalService {
 
 	@Override
 	public String findByEmailAndPassword(Hospital hospital) {
-		Hospital dto = userRegisterRepository.findByEmailAndPassword(hospital.getEmail(),
+		Hospital dto = userRegisterRepository.findByHospitalEmailAndPassword(hospital.getHospitalEmail(),
 				hospital.getPassword());
 
-		if (dto != null && dto.getPassword().equals(hospital.getPassword()) && dto.getEmail().equals(hospital.getEmail())) {
+		if (dto != null && dto.getPassword().equals(hospital.getPassword()) && dto.getHospitalEmail().equals(hospital.getHospitalEmail())) {
 			return "hospitalLogin details successufully";
 		} else {
 			return "Incorrect email and password";

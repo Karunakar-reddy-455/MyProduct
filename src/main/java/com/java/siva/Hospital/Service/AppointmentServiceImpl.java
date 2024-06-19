@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.siva.Hospital.Dto.AppointmentDto;
 import com.java.siva.Hospital.Entity.Appointment;
 import com.java.siva.Hospital.Repository.AppointmentRepository;
 import com.java.siva.Hospital.exception.IdNotFoundException;
@@ -44,6 +45,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 		else {
 			throw new IdNotFoundException("Appointment Id is not Present" + " " + id);
 		}
+	}
+
+	@Override
+	public List<AppointmentDto> joinTabel(Long hospitalId) {
+		return appointmentRepository.findAppointmentDetailsByHospitalId(hospitalId);
 	}
 
 	}
