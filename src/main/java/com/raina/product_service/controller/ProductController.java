@@ -1,15 +1,10 @@
 package com.raina.product_service.controller;
 
-import com.raina.product_service.ProductServiceApplication;
 import com.raina.product_service.model.Product;
 import com.raina.product_service.model.ProductRequest;
 import com.raina.product_service.model.ProductResponse;
 import com.raina.product_service.service.ProductService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +34,17 @@ public class ProductController {
     public List<ProductResponse> getAllDetails(){
 
        return productService.getAllDetails();
+    }
+    @GetMapping("/get/{id}")
+    public ProductResponse findById(@PathVariable String id){
+
+        return productService.getSingleEntity(id);
+
+    }
+
+    public void deleteById(@PathVariable Long id){
+
+        productService.deleteById(id);
     }
 
 

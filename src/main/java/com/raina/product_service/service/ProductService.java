@@ -28,7 +28,7 @@ public class ProductService {
         List<Product> products = productRepository.findAll();
         List<ProductResponse> productRes = new ArrayList<>();
 
-        for(Product pro : products){
+        for (Product pro : products) {
             ProductResponse pr = new ProductResponse();
             pr.setId(pro.getId());
             pr.setName(pro.getName());
@@ -40,4 +40,23 @@ public class ProductService {
         return productRes;
     }
 
+    public ProductResponse getSingleEntity(String id) {
+
+        Product all = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + id));
+
+        ProductResponse response = new ProductResponse();
+
+        response.setId(all.getId());
+        response.setName(all.getName());
+        response.setDescription(all.getDescription());
+        response.setPrice(all.getPrice());
+        return response;
+    }
+
+
+//    public void deleteById(Long id) {
+//
+//        Long productId = productRepository.findById(id);
+//    }
 }
