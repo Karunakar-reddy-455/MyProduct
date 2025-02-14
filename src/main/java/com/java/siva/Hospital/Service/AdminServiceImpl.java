@@ -21,7 +21,9 @@ public class AdminServiceImpl implements AdminService {
 		if (user != null) {
 
 			return "{Status:200}" + " " + "Please Login";
-		} else {
+		}
+		
+	else {
 			throw new EmailAndPasswordException("Email and Password Details Wrong Please check " + " " + user );
 		}
 

@@ -2,6 +2,7 @@ package com.java.siva.Hospital.Service;
 
 import java.util.List;
 
+import com.java.siva.Hospital.Dto.RoomsDto;
 import com.java.siva.Hospital.Entity.Rooms;
 import com.java.siva.Hospital.Enum.Status;
 
@@ -19,6 +20,7 @@ public Rooms addRooms(Rooms rooms,Status status);
 	
 	public Rooms findByRoomsId(Long roomsId);
 	
-//	public List<FlourDto> getHospitalId(Long hospitalId);
+	public List<RoomsDto> getHospitalId(Long hospitalId);
+
 
 }

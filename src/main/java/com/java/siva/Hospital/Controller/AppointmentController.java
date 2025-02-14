@@ -1,5 +1,6 @@
 package com.java.siva.Hospital.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class AppointmentController {
 	public ResponseEntity<Appointment> addAppointment(@RequestBody Appointment appointment) {
 		Appointment savedAppointment = appointmentService.saveAppointment(appointment);
 		LOGGER.info("New appointment added: {}", savedAppointment);
-		return new ResponseEntity<>(savedAppointment, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Appointment>(savedAppointment, HttpStatus.ACCEPTED);
 	}
 
 	@PutMapping("/updateAppointment/{id}")
@@ -48,17 +49,23 @@ public class AppointmentController {
 		List<Appointment> appointments = appointmentService.fetchAllAppointments();
 		LOGGER.info("Retrieved all appointments: {}", appointments);
 		return new ResponseEntity<>(appointments, HttpStatus.OK);
+		
+		
 	}
 
-	@DeleteMapping("/appointment/{id}")
-	public ResponseEntity<String> deleteAppointment(@RequestBody Long id) {
+	@DeleteMapping("/appointment/{Id}")
+	public ResponseEntity<String> deleteAppointment(@PathVariable Long Id) {
 		LOGGER.info("Appointment Deleted }");
-		return new ResponseEntity<>(appointmentService.deleteAppointment(id), HttpStatus.OK);
+		 
+		String ss = appointmentService.deleteAppointment(Id);
+		return new ResponseEntity<>(ss, HttpStatus.OK);
 	}
 
 	@GetMapping("/hospital/{hospitalId}")
 	public List<AppointmentDto> getAppointmentsByHospitalId(@PathVariable long hospitalId) {
 		return appointmentService.joinTabel(hospitalId);
 	}
+	
+	
 
 }

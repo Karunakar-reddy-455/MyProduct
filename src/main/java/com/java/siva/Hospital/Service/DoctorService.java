@@ -20,5 +20,7 @@ public interface DoctorService {
 	public DoctorDto findByDoctor(Long id);
 	
 	public List<Doctor> findDoctorsByHospitalId(Long hospitalId);
+	
+	
 
 }

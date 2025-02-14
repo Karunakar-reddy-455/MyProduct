@@ -3,14 +3,9 @@ package com.java.siva.Hospital.Entity;
 import com.java.siva.Hospital.Enum.Status;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Flour {
@@ -19,31 +14,8 @@ public class Flour {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long flourId;
 	private String flourName;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "hospital_id")
-	private Hospital hospital;
-	
-	@ManyToOne
-	@JoinColumn(name = "location_id")
-	private Locations location;
-
-	/**
-	 * @param flourId
-	 * @param flourName
-	 * @param hospital
-	 * @param location
-	 * @param status
-	 */
-	public Flour(long flourId, String flourName, Hospital hospital, Locations location, Status status) {
-		super();
-		this.flourId = flourId;
-		this.flourName = flourName;
-		this.hospital = hospital;
-		this.location = location;
-		this.status = status;
-	}
-
-	@Enumerated(EnumType.STRING)
+	private long hospitalId;
+	private long locationId;
 	private Status status;
 
 	public long getFlourId() {
@@ -62,6 +34,22 @@ public class Flour {
 		this.flourName = flourName;
 	}
 
+	public long getHospitalId() {
+		return hospitalId;
+	}
+
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
+	}
+
+	public long getLocationId() {
+		return locationId;
+	}
+
+	public void setLocationId(long locationId) {
+		this.locationId = locationId;
+	}
+
 	public Status getStatus() {
 		return status;
 	}
@@ -70,34 +58,33 @@ public class Flour {
 		this.status = status;
 	}
 
-	public Flour() {
-	}
-
-	public Flour(long flourId, String flourName, Status status) {
+	/**
+	 * @param flourId
+	 * @param flourName
+	 * @param hospitalId
+	 * @param locationId
+	 * @param status
+	 */
+	public Flour(long flourId, String flourName, long hospitalId, long locationId, Status status) {
+		super();
 		this.flourId = flourId;
 		this.flourName = flourName;
+		this.hospitalId = hospitalId;
+		this.locationId = locationId;
 		this.status = status;
+	}
+
+	/**
+	 * 
+	 */
+	public Flour() {
+		super();
 	}
 
 	@Override
 	public String toString() {
-		return "Flour [flourId=" + flourId + ", flourName=" + flourName + ", hospital=" + hospital + ", location="
-				+ location + ", status=" + status + "]";
+		return "Flour [flourId=" + flourId + ", flourName=" + flourName + ", hospitalId=" + hospitalId + ", locationId="
+				+ locationId + ", status=" + status + "]";
 	}
 
-	public Hospital getHospital() {
-		return hospital;
-	}
-
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
-	}
-
-	public Locations getLocation() {
-		return location;
-	}
-
-	public void setLocation(Locations location) {
-		this.location = location;
-	}
 }

@@ -59,7 +59,7 @@ public class FlourServiceImpl implements FlourService {
 
 	@Override
 	public List<FlourDto> getHospitalId(Long hospitalId) {
-		return flourRepository.findFlourByHospitalId(hospitalId);
+		return flourRepository.findFloursByHospitalId(hospitalId);
 	}
 
 	@Override

@@ -14,11 +14,11 @@ import com.java.siva.Hospital.Entity.Flour;
 public interface FlourRepository extends JpaRepository<Flour, Long> {
 
     @Query("SELECT new com.java.siva.Hospital.Dto.FlourDto(m.flourName, m.flourId, h.hospitalName, l.locationName) " +
-           "FROM Flour m " +
-           "JOIN m.hospital h " +
-           "JOIN m.location l " +
-           "WHERE h.hospitalId = :hospitalId")
-    List<FlourDto> findFlourByHospitalId(@Param("hospitalId") Long hospitalId);
+           "FROM Flour m ,Hospital h,Locations l " +
+           "WHERE m.hospitalId = h.hospitalId " +
+           "AND m.locationId = l.locationId " +
+           "AND h.hospitalId = :hospitalId")
+    List<FlourDto> findFloursByHospitalId(@Param("hospitalId") Long hospitalId);
 }
 
 

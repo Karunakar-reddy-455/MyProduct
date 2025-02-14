@@ -13,7 +13,7 @@ public interface AppointmentService {
 
 	public List<Appointment> fetchAllAppointments();
 	
-	public String deleteAppointment(Long id);
+	public String deleteAppointment(Long Id);
 	
 	List<AppointmentDto> joinTabel(Long hospitalId);
 

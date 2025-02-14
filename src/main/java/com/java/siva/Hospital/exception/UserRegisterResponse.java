@@ -25,5 +25,5 @@ public class UserRegisterResponse {
 	public String getDescription() {
 		return description;
 	}
-
+	 
 }

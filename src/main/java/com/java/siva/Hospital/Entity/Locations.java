@@ -1,14 +1,13 @@
 package com.java.siva.Hospital.Entity;
 
 import com.java.siva.Hospital.Enum.Status;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Locations {
@@ -20,9 +19,7 @@ public class Locations {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 
-	@ManyToOne
-	@JoinColumn(name = "hospital_id")
-	private Hospital hospital;
+	private long hospitalId;
 
 	public long getLocationId() {
 		return locationId;
@@ -47,39 +44,40 @@ public class Locations {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
+
+	public long getHospitalId() {
+		return hospitalId;
+	}
+
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
+	}
 
 	/**
 	 * @param locationId
 	 * @param locationName
 	 * @param status
-	 * @param hospital
+	 * @param hospitalId
 	 */
-	public Locations(long locationId, String locationName, Status status, Hospital hospital) {
+	public Locations(long locationId, String locationName, Status status, long hospitalId) {
 		super();
 		this.locationId = locationId;
 		this.locationName = locationName;
 		this.status = status;
-		this.hospital = hospital;
-	}
-
-	public Locations() {
-	}
-
-	public Hospital getHospital() {
-		return hospital;
-	}
-
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
+		this.hospitalId = hospitalId;
 	}
 
 	@Override
 	public String toString() {
 		return "Locations [locationId=" + locationId + ", locationName=" + locationName + ", status=" + status
-				+ ", hospital=" + hospital + "]";
+				+ ", hospitalId=" + hospitalId + "]";
 	}
 
-	
+	/**
+	 * 
+	 */
+	public Locations() {
+		super();
+	}
 
 }

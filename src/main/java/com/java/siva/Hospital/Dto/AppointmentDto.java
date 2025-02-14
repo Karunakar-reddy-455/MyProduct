@@ -26,6 +26,10 @@ public class AppointmentDto {
 		this.patientAdhar = patientAdhar;
 	}
 
+	public AppointmentDto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private long appointmentId;
 	private String doctorName;
 	private String hospitalName;

@@ -58,7 +58,7 @@ public class LocationsServiceImpl implements LocationsService {
 
 	@Override
 	public List<LocationDto> findByHospital(Long hospitalId) {
-		return locationRepository.findByHospital(hospitalId);
+		return locationRepository.findLocationsByHospitalId(hospitalId);
 	}
 //	@Override
 //	public List<Flour> findByFlourId(Long locationId) {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.java.siva.Hospital.Dto.RoomsDto;
 import com.java.siva.Hospital.Entity.Rooms;
 import com.java.siva.Hospital.Enum.Status;
 import com.java.siva.Hospital.Service.RoomsService;
@@ -19,34 +20,39 @@ import com.java.siva.Hospital.Service.RoomsService;
 @RestController
 @RequestMapping("/api")
 public class RoomsController {
-	
-	  @Autowired
-	    private RoomsService roomsService;
 
-	    @PostMapping("/addroom")
-	    public Rooms addRooms(@RequestBody Rooms rooms, Status status) {
-	        return roomsService.addRooms(rooms, status);
-	    }
+	@Autowired
+	private RoomsService roomsService;
 
-	    @GetMapping("/getAllRoom")
-	    public List<Rooms> getAllRooms() {
-	        return roomsService.fetchRooms();
-	    }
+	@PostMapping("/addroom")
+	public Rooms addRooms(@RequestBody Rooms rooms, Status status) {
+		return roomsService.addRooms(rooms, status);
+	}
 
-	    @DeleteMapping("/delete/{roomsId}")
-	    public String deleteLocation(@PathVariable Long roomsId) {
-	    	roomsService.deleteRooms(roomsId);
-	        return "Location Deleted Successfully";
-	    }
+	@GetMapping("/getAllRoom")
+	public List<Rooms> getAllRooms() {
+		return roomsService.fetchRooms();
+	}
 
-	    @PutMapping("/update/{roomsId}")
-	    public Rooms updateRooms(@RequestBody Rooms rooms, @PathVariable Long roomsId) {
-	        return roomsService.updateRooms(rooms, roomsId);
-	    }
-	    
-//	    @GetMapping("/hospital/{hospitalId}")
-//	    public List<LocationDto> getHospitalId(@PathVariable Long hospitalId){
-//	    	return roomsService.findByHospital(hospitalId);
-//	    }
+	@DeleteMapping("/delete/{roomsId}")
+	public String deleteLocation(@PathVariable Long roomsId) {
+		roomsService.deleteRooms(roomsId);
+		return "Location Deleted Successfully";
+	}
+
+	@PutMapping("/update/{roomsId}")
+	public Rooms updateRooms(@RequestBody Rooms rooms, @PathVariable Long roomsId) {
+		return roomsService.updateRooms(rooms, roomsId);
+	}
+
+	@GetMapping("/getAllRoom/{roomsId}")
+	public Rooms findRoomId(@PathVariable Long roomsId) {
+		return roomsService.findByRoomsId(roomsId);
+	}
+
+	@GetMapping("/hospital/rooms/{hospitalId}")
+	public List<RoomsDto> fetchHospitalId(@PathVariable Long hospitalId) {
+		return roomsService.getHospitalId(hospitalId);
+	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.siva.Hospital.Dto.RoomsDto;
 import com.java.siva.Hospital.Entity.Rooms;
 import com.java.siva.Hospital.Enum.Status;
 import com.java.siva.Hospital.Repository.RoomsRepository;
@@ -65,6 +66,11 @@ public class RoomsServiceImpl implements RoomsService {
 		else {
 			throw new IdNotFoundException("HospitalUpdated id not found with id: " + roomsId);
 		}
+	}
+
+	@Override
+	public List<RoomsDto> getHospitalId(Long hospitalId) {
+		return roomsRepository.findRoomsByHospitalId(hospitalId);
 	}
 
 }

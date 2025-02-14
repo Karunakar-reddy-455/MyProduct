@@ -6,8 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Rooms {
@@ -19,15 +17,9 @@ public class Rooms {
 	private String roomName;
 
 	private Status status;
-	@ManyToOne
-	@JoinColumn(name = "hospital_id")
-	private Hospital hospital;
-	@ManyToOne
-	@JoinColumn(name = "location_id")
-	private Locations location;
-	@ManyToOne
-	@JoinColumn(name = "flour_id")
-	private Flour flour;
+	private long hospitalId;
+	private long locationId;
+	private long flourId;
 
 	public long getRoomId() {
 		return roomId;
@@ -53,46 +45,46 @@ public class Rooms {
 		this.status = status;
 	}
 
-	public Hospital getHospital() {
-		return hospital;
+	public long getHospitalId() {
+		return hospitalId;
 	}
 
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
+	public void setHospitalId(long hospitalId) {
+		this.hospitalId = hospitalId;
 	}
 
-	public Flour getFlour() {
-		return flour;
+	public long getLocationId() {
+		return locationId;
 	}
 
-	public void setFlour(Flour flour) {
-		this.flour = flour;
+	public void setLocationId(long locationId) {
+		this.locationId = locationId;
 	}
 
-	public Locations getLocation() {
-		return location;
+	public long getFlourId() {
+		return flourId;
 	}
 
-	public void setLocation(Locations location) {
-		this.location = location;
+	public void setFlourId(long flourId) {
+		this.flourId = flourId;
 	}
 
 	/**
 	 * @param roomId
 	 * @param roomName
 	 * @param status
-	 * @param hospital
-	 * @param location
-	 * @param flour
+	 * @param hospitalId
+	 * @param locationId
+	 * @param flourId
 	 */
-	public Rooms(long roomId, String roomName, Status status, Hospital hospital, Locations location, Flour flour) {
+	public Rooms(long roomId, String roomName, Status status, long hospitalId, long locationId, long flourId) {
 		super();
 		this.roomId = roomId;
 		this.roomName = roomName;
 		this.status = status;
-		this.hospital = hospital;
-		this.location = location;
-		this.flour = flour;
+		this.hospitalId = hospitalId;
+		this.locationId = locationId;
+		this.flourId = flourId;
 	}
 
 	/**
@@ -104,8 +96,8 @@ public class Rooms {
 
 	@Override
 	public String toString() {
-		return "Rooms [roomId=" + roomId + ", roomName=" + roomName + ", status=" + status + ", hospital=" + hospital
-				+ ", location=" + location + ", flour=" + flour + "]";
+		return "Rooms [roomId=" + roomId + ", roomName=" + roomName + ", status=" + status + ", hospitalId="
+				+ hospitalId + ", locationId=" + locationId + ", flourId=" + flourId + "]";
 	}
 
 }

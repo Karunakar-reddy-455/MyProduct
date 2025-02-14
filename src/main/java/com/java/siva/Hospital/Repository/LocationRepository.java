@@ -13,11 +13,13 @@ import com.java.siva.Hospital.Entity.Locations;
 @Repository
 public interface LocationRepository extends JpaRepository<Locations, Long> {
 
+    
     @Query("SELECT new com.java.siva.Hospital.Dto.LocationDto(l.locationId, h.hospitalName, h.hospitalEmail, h.mobile, l.locationName) " +
-           "FROM Locations l " +
-           "JOIN l.hospital h " +
-           "WHERE h.hospitalId = :hospitalId")
-    public List<LocationDto> findByHospital(@Param("hospitalId") Long hospitalId);
+    	       "FROM Locations l, Hospital h " +  // Added space after 'Hospital h'
+    	       "WHERE l.hospitalId = h.hospitalId " + // Added space before 'AND'
+    	       "AND h.hospitalId = :hospitalId")
+    	List<LocationDto> findLocationsByHospitalId(@Param("hospitalId") Long hospitalId);
+
 	
 //	public List<Flour> findByLocationId(Long locationId);
 }

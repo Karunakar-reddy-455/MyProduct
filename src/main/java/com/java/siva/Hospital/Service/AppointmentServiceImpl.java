@@ -1,10 +1,12 @@
 package com.java.siva.Hospital.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.java.siva.Hospital.Dto.AppointmentDto;
 import com.java.siva.Hospital.Entity.Appointment;
@@ -36,21 +38,23 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return appointmentRepository.findAll();
 	}
 	@Override
-	public String deleteAppointment(Long id) {
-		if(appointmentRepository.findById(id).isPresent())
+	public String deleteAppointment(Long  Id) {
+		if(appointmentRepository.findById(Id).isPresent())
 		{
-			appointmentRepository.deleteById(id);
+			appointmentRepository.deleteById(Id);
 			return "Appointement Deleted Successfully";
 		}
 		else {
-			throw new IdNotFoundException("Appointment Id is not Present" + " " + id);
+			throw new IdNotFoundException("Appointment Id is not Present" + " " +  Id);
 		}
 	}
 
 	@Override
 	public List<AppointmentDto> joinTabel(Long hospitalId) {
-		return appointmentRepository.findAppointmentDetailsByHospitalId(hospitalId);
+		return appointmentRepository.findAppointmentsByHospitalId(hospitalId);
 	}
-
-	}
+	
+    
+	
+}
 
